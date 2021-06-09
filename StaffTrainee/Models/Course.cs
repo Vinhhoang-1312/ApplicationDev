@@ -8,8 +8,8 @@ namespace StaffTrainee.Models
 {
     public class Course
     {
-    
-        [Key]
+
+        [Required]
         public int CourseId { get; set; }
         [Required]
      

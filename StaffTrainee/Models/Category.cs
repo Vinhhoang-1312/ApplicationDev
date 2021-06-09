@@ -10,7 +10,7 @@ namespace StaffTrainee.Models
     {
 
         [Required]
-        [Key]
+        
         [Display(Name = "Category Id")]
         public int Id { get; set; }
         [Required]
