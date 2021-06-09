@@ -186,6 +186,10 @@
     <Compile Include="Migrations\202106091437483_createcategoriestable.Designer.cs">
       <DependentUpon>202106091437483_createcategoriestable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106091528002_uniquecategories.cs" />
+    <Compile Include="Migrations\202106091528002_uniquecategories.Designer.cs">
+      <DependentUpon>202106091528002_uniquecategories.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -279,6 +283,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106091437483_createcategoriestable.resx">
       <DependentUpon>202106091437483_createcategoriestable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106091528002_uniquecategories.resx">
+      <DependentUpon>202106091528002_uniquecategories.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
