@@ -11,9 +11,6 @@ namespace StaffTrainee.Controllers
     {
 
 
-
-       
-
         private List<Category> _categories = new List<Category>();
 
 		public CategoriesController()
