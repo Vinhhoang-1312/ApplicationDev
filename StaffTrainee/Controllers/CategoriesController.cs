@@ -1,5 +1,7 @@
-﻿using StaffTrainee.Models;
+﻿using Microsoft.AspNet.Identity;
+using StaffTrainee.Models;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 
 namespace StaffTrainee.Controllers
@@ -55,5 +57,64 @@ namespace StaffTrainee.Controllers
             }
             return RedirectToAction("Index");
         }
+
+
+        [HttpGet]
+        public ActionResult Delete(int? id)
+        {
+            //var categoriesId = User.Identity.GetUserId();
+
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var categoryinDb = _context.Categories
+                //.Where(c => c.Id.Equals(userId))
+                .SingleOrDefault(c => c.Id == id);
+
+            if (categoryinDb == null) return HttpNotFound();
+
+            _context.Categories.Remove(categoryinDb);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+
+        [HttpGet]
+        public ActionResult Edit(int? id)
+        {
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var categoryInDb = _context.Categories.SingleOrDefault(c => c.Id == id);
+
+            if (categoryInDb == null) return HttpNotFound();
+
+            return View(categoryInDb);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Category category)
+        {
+            var categoryInDb = _context.Categories.SingleOrDefault(c => c.Id == category.Id);
+
+            if (!ModelState.IsValid)
+            {
+                return View(category);
+            }
+
+            if (categoryInDb == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            categoryInDb.Description = category.Description;
+            categoryInDb.Name = category.Name;
+           
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
     }
 }
+
+
+
+
+   
