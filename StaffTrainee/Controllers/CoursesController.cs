@@ -1,5 +1,6 @@
 ﻿using Microsoft.Ajax.Utilities;
 using StaffTrainee.Models;
+using StaffTrainee.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,7 +43,7 @@ namespace StaffTrainee.Controllers
 		[HttpGet]
 		public ActionResult Create()
 		{
-			var viewModel = new TodoCategoriesViewModel()
+			var viewModel = new CourseCategoriesViewModel()
 			{
 				Categories = _context.Categories.ToList()
 			};
@@ -51,29 +52,29 @@ namespace StaffTrainee.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Create(Todo todo)
+		public ActionResult Create(Course course)
 		{
 			if (!ModelState.IsValid)
 			{
-				var viewModel = new TodoCategoriesViewModel()
+				var viewModel = new CourseCategoriesViewModel()
 				{
-					Todo = todo,
+					Course = course,
 					Categories = _context.Categories.ToList()
 				};
 
 				return View(viewModel);
 			}
 
-			var userId = User.Identity.GetUserId();
-			var newTodo = new Todo()
+			//var userId = User.Identity.GetUserId();
+			var newTodo = new Course()
 			{
-				Description = todo.Description,
-				CategoryId = todo.CategoryId,
-				DueDate = todo.DueDate,
-				UserId = userId
+				Description = course.Description,
+				CategoryId = course.CategoryId,
+				Name = course.Name,
+				
 			};
 
-			_context.Todoes.Add(newTodo);
+			_context.Courses.Add(newTodo);
 			_context.SaveChanges();
 
 			return RedirectToAction("Index");
