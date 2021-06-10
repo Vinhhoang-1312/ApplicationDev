@@ -10,8 +10,9 @@ namespace StaffTrainee.Models
 {
     public class Category
     {
-
-
+       
+        [Key]
+        [Required]
         public int Id { get; set; }
         [Required]
         [StringLength(255)]
