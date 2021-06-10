@@ -15,7 +15,7 @@ namespace StaffTrainee.Controllers
             _context = new ApplicationDbContext();
         }
         // GET: Categories
-      
+
         public ActionResult Index()
         {
             var categories = _context.Categories.ToList();
@@ -23,14 +23,14 @@ namespace StaffTrainee.Controllers
         }
 
         [HttpGet]
-       
+
         public ActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-       
+
         public ActionResult Create(Category model)
         {
             if (!ModelState.IsValid)
@@ -77,8 +77,6 @@ namespace StaffTrainee.Controllers
 
             return RedirectToAction("Index");
         }
-
-
         [HttpGet]
         public ActionResult Edit(int? id)
         {
@@ -90,7 +88,6 @@ namespace StaffTrainee.Controllers
 
             return View(categoryInDb);
         }
-
         [HttpPost]
         public ActionResult Edit(Category category)
         {
@@ -100,16 +97,18 @@ namespace StaffTrainee.Controllers
             {
                 return View(category);
             }
-
             if (categoryInDb == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             categoryInDb.Description = category.Description;
             categoryInDb.Name = category.Name;
-           
 
             _context.SaveChanges();
 
             return RedirectToAction("Index");
+
+            //asdjhasdjaskdsahd
+
+
         }
     }
 }
@@ -117,4 +116,3 @@ namespace StaffTrainee.Controllers
 
 
 
-   

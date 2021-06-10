@@ -4,11 +4,11 @@
 <h2>Index of Category Controller</h2>
 <div class="form-group">
     @Html.ActionLink("Add new Categories", // <-- Link text
-                             "Create", // <-- Action Method Name
-                             "Categories", // <-- Controller Name
-                             null, // <-- Route value
-                             new { @class = "btn btn-info" } // <-- htmlArguments
-                             )
+                                                               "Create", // <-- Action Method Name
+                                                               "Categories", // <-- Controller Name
+                                                               null, // <-- Route value
+                                                               new { @class = "btn btn-info" } // <-- htmlArguments
+                                                               )
 </div>
 <table class="table">
     <thead class="thead-light">
@@ -21,22 +21,25 @@
     <tbody>
         @foreach (var category in Model)
         {
-    <tr>
-        <th scope="row">@category.Id</th>
-        <td>@category.Name</td>
-        <td>@category.Description</td>
-        <td>
-        <td>
-           
-               @Html.ActionLink("Edit", // <-- Link text
-                                 "Edit", // <-- Action Method Name
-                                 "Categories", // <-- Controller Name
-                                 new { id = category.Id }, // <-- Route value
-                                 new { @class = "btn btn-default" } // <-- htmlArguments
-                               )
-            <a href="#" class="btn btn-danger">Delete</a>
-        </td>
-    </tr>
-        }
-                </tbody>
+        <tr>
+            <th scope="row">@category.Id</th>
+            <td>@category.Name</td>
+            <td>@category.Description</td>
+            <td>
+            <td>
+              
+                @Html.ActionLink("Edit", // <-- Link text
+                                                     "Edit", // <-- Action Method Name
+                                                     "Categories", // <-- Controller Name
+                                                     new { id = category.Id }, // <-- Route value
+                                                     new { @class = "btn btn-default" })  @*htmlArguments*@ 
+            
+                @Html.ActionLink("Delete", // <-- Link text
+                                                "Delete", // <-- Action Method Name
+                                                "Categories", // <-- Controller Name
+                                                new { id = category.Id }, // <-- Route value
+                                                new { @class = "btn btn-danger" })   @*htmlArguments*@
+            </td>
+        </tr>}
+    </tbody>
 </table>

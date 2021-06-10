@@ -11,8 +11,8 @@ namespace StaffTrainee.Models
     public class Category
     {
 
-        
-    public int Id { get; set; }
+
+        public int Id { get; set; }
         [Required]
         [StringLength(255)]
         [DisplayName("Category Name")]
@@ -20,7 +20,7 @@ namespace StaffTrainee.Models
         public string Name { get; set; }
         [Required]
         public string Description { get; set; }
-    
+
 
     }
 }
