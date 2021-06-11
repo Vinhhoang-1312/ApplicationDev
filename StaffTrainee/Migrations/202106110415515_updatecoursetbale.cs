@@ -2,7 +2,7 @@ namespace StaffTrainee.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class updatecoursetbale : DbMigration
     {
         public override void Up()
@@ -10,18 +10,18 @@ namespace StaffTrainee.Migrations
             CreateTable(
                 "dbo.Courses",
                 c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        CategoryId = c.Int(nullable: false),
-                        Name = c.String(nullable: false),
-                        Description = c.String(nullable: false),
-                    })
+                {
+                    Id = c.Int(nullable: false, identity: true),
+                    CategoryId = c.Int(nullable: false),
+                    Name = c.String(nullable: false),
+                    Description = c.String(nullable: false),
+                })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Categories", t => t.CategoryId, cascadeDelete: true)
                 .Index(t => t.CategoryId);
-            
+
         }
-        
+
         public override void Down()
         {
             DropForeignKey("dbo.Courses", "CategoryId", "dbo.Categories");
