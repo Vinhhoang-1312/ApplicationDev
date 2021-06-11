@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace StaffTrainee.ViewModel
+namespace StaffTrainee.ViewModels
 {
     public class CourseCategoriesViewModel
     {
