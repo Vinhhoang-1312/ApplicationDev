@@ -9,37 +9,37 @@ using System.Web.Mvc;
 
 namespace StaffTrainee.Controllers
 {
-    public class CoursesController : Controller
-    {
-        private ApplicationDbContext _context;
+	public class CoursesController : Controller
+	{
+		private ApplicationDbContext _context;
 
-        public CoursesController()
-        {
-            _context = new ApplicationDbContext();
-        }
-        // GET: Course
+		public CoursesController()
+		{
+			_context = new ApplicationDbContext();
+		}
+		// GET: Course
 
-        [HttpGet]
-        public ActionResult Index(string searchString)
-        {
+		[HttpGet]
+		public ActionResult Index(string searchString)
+		{
 
-           
-            //var userId = User.Identity.GetUserId();
+		   
+			//var userId = User.Identity.GetUserId();
 
-            var course = _context.Courses
-                //.Include(t => t.Category)
-                //.Where(t => t.UserId.Equals(userId))
-                .ToList();
+			var course = _context.Courses
+				//.Include(t => t.Category)
+				//.Where(t => t.UserId.Equals(userId))
+				.ToList();
 
 
 
-            if (!searchString.IsNullOrWhiteSpace())
-            {
-                course = _context.Courses.Where(t => t.Description.Contains(searchString)).ToList();
-            }
+			if (!searchString.IsNullOrWhiteSpace())
+			{
+				course = _context.Courses.Where(t => t.Description.Contains(searchString)).ToList();
+			}
 
-            return View(course);
-        }
+			return View(course);
+		}
 		[HttpGet]
 		public ActionResult Create()
 		{

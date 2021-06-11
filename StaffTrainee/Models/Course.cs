@@ -11,7 +11,7 @@ namespace StaffTrainee.Models
     {
 
         [Required]
-        [ForeignKey("Course Id")]
+        [Display(Name = "Course Id")]
         public int Id { get; set; }
         [Required]
         [ForeignKey("Category")]
