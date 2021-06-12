@@ -71,8 +71,7 @@ namespace StaffTrainee.Models
         [Required]
         public string FullName { get; set; }
         [Required]
-        [Range(7, 20, ErrorMessage = "Please enter Age value bigger than 7 and less than 20")]
-
+        [Range(1, 20, ErrorMessage = "Please enter Phone value bigger than 0 and less than 20")]
         public int Phone { get; set; }
 
         [Required]

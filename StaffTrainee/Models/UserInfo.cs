@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -8,15 +9,16 @@ namespace StaffTrainee.Models
 {
     public class UserInfo
     {
-        [Key]
 
+        [Key]
+        [ForeignKey("User")]
         public int UserId { get; set; }
+        public ApplicationUser User { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
-        [Range(7, 20, ErrorMessage = "Please enter Age value bigger than 7 and less than 20")]
+        [Range(1, 20, ErrorMessage = "Please enter Phone number value bigger than 0 and less than 20")]
         public int Phone { get; set; }
-        [Required]
-        public string Email { get; set; }
+
     }
 }
