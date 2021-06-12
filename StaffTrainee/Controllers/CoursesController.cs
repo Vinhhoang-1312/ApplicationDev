@@ -137,5 +137,23 @@ namespace StaffTrainee.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public ActionResult Delete(int? id)
+        {
+            //var userId = User.Identity.GetUserId();
+
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var courseInDb = _context.Courses
+                //.Where(t => t.UserId.Equals(userId))
+                .SingleOrDefault(t => t.Id == id);
+
+            if (courseInDb == null) return HttpNotFound();
+
+            _context.Courses.Remove(courseInDb);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
     }
 }
