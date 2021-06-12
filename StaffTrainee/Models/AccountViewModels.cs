@@ -68,6 +68,12 @@ namespace StaffTrainee.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+        [Required]
+        public string FullName { get; set; }
+        [Required]
+        [Range(7, 20, ErrorMessage = "Please enter Age value bigger than 7 and less than 20")]
+
+        public int Phone { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
@@ -79,6 +85,7 @@ namespace StaffTrainee.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
     }
 
     public class ResetPasswordViewModel
