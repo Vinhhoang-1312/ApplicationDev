@@ -195,6 +195,18 @@
     <Compile Include="Migrations\202106110415515_updatecoursetbale.Designer.cs">
       <DependentUpon>202106110415515_updatecoursetbale.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106111118196_updatelainameindexchobangcategory.cs" />
+    <Compile Include="Migrations\202106111118196_updatelainameindexchobangcategory.Designer.cs">
+      <DependentUpon>202106111118196_updatelainameindexchobangcategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106111120420_addnameindexmodelcategorylaiviloi.cs" />
+    <Compile Include="Migrations\202106111120420_addnameindexmodelcategorylaiviloi.Designer.cs">
+      <DependentUpon>202106111120420_addnameindexmodelcategorylaiviloi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106120326587_xoa[key]categorymodel.cs" />
+    <Compile Include="Migrations\202106120326587_xoa[key]categorymodel.Designer.cs">
+      <DependentUpon>202106120326587_xoa[key]categorymodel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -297,6 +309,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106110415515_updatecoursetbale.resx">
       <DependentUpon>202106110415515_updatecoursetbale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106111118196_updatelainameindexchobangcategory.resx">
+      <DependentUpon>202106111118196_updatelainameindexchobangcategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106111120420_addnameindexmodelcategorylaiviloi.resx">
+      <DependentUpon>202106111120420_addnameindexmodelcategorylaiviloi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106120326587_xoa[key]categorymodel.resx">
+      <DependentUpon>202106120326587_xoa[key]categorymodel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
