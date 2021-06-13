@@ -40,7 +40,7 @@ namespace StaffTrainee.Controllers
 
             if (!searchString.IsNullOrWhiteSpace())
             {
-                coursesInDb = _context.Courses.Where(t => t.Description.Contains(searchString)).ToList();
+                coursesInDb = _context.Courses.Where(c => c.Name.Contains(searchString)).ToList();
             }
 
             return View(coursesInDb);

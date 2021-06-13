@@ -14,12 +14,18 @@
                          )
 </div>
 
+
+
+<!-- Load icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 @using (Html.BeginForm("Index", "Courses", FormMethod.Get))
 {
     <div class="form-group">
         @Html.TextBox("searchString", "")
         <button type="submit"><i class="fa fa-search"></i></button>
     </div>
+
 }
 
 
@@ -35,28 +41,28 @@
     <tbody>
         @foreach (var course in Model)
         {
-        <tr>
-            <th scope="row">@course.Id</th>
-            <td>@course.Category.Name</td>  
-            <td>@course.Name</td>
-            <td>@course.Description</td>
-            <td>
-              
-                @Html.ActionLink("Edit", // <-- Link text
-                                                 "Edit", // <-- Action Method Name
-                                                 "Courses", // <-- Controller Name
-                                                 new { id = course.Id }, // <-- Route value
-                                                 new { @class = "btn btn-default" } // <-- htmlArguments
-                                             )
+            <tr>
+                <th scope="row">@course.Id</th>
+                <td>@course.Category.Name</td>
+                <td>@course.Name</td>
+                <td>@course.Description</td>
+                <td>
 
-                @Html.ActionLink("Delete", // <-- Link text
-                                                 "Delete", // <-- Action Method Name
-                                                 "Courses", // <-- Controller Name
-                                                 new { id = course.Id }, // <-- Route value
-                                                 new { @class = "btn btn-danger" } // <-- htmlArguments
-                                             )
-            </td>
-        </tr>
+                    @Html.ActionLink("Edit", // <-- Link text
+                                                     "Edit", // <-- Action Method Name
+                                                     "Courses", // <-- Controller Name
+                                                     new { id = course.Id }, // <-- Route value
+                                                     new { @class = "btn btn-default" } // <-- htmlArguments
+                                                 )
+
+                    @Html.ActionLink("Delete", // <-- Link text
+                                                     "Delete", // <-- Action Method Name
+                                                     "Courses", // <-- Controller Name
+                                                     new { id = course.Id }, // <-- Route value
+                                                     new { @class = "btn btn-danger" } // <-- htmlArguments
+                                                 )
+                </td>
+            </tr>
         }
     </tbody>
 </table>
