@@ -211,6 +211,10 @@
     <Compile Include="Migrations\202106130831080_createUserInfortable.Designer.cs">
       <DependentUpon>202106130831080_createUserInfortable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106130923338_addnumberforPhoneatUserInfortable.cs" />
+    <Compile Include="Migrations\202106130923338_addnumberforPhoneatUserInfortable.Designer.cs">
+      <DependentUpon>202106130923338_addnumberforPhoneatUserInfortable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -327,6 +331,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106130831080_createUserInfortable.resx">
       <DependentUpon>202106130831080_createUserInfortable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106130923338_addnumberforPhoneatUserInfortable.resx">
+      <DependentUpon>202106130923338_addnumberforPhoneatUserInfortable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

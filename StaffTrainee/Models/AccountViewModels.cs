@@ -70,9 +70,14 @@ namespace StaffTrainee.Models
         public string Email { get; set; }
         [Required]
         public string FullName { get; set; }
-        [Required]
-        [Range(1, 20, ErrorMessage = "Please enter Phone value bigger than 0 and less than 20")]
-        public int Phone { get; set; }
+        //[Required(ErrorMessage = "You must provide a phone number")]
+        //[Display(Name = "Phone")]
+        //[DataType(DataType.PhoneNumber)]
+        //[RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
+        //public string Phone { get; set; }
+        [Required(ErrorMessage = "Required")]
+        [RegularExpression(@"^(\d{10})$", ErrorMessage = "Wrong mobile")]
+        public string Phone { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]

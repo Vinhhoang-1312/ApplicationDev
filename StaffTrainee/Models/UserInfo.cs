@@ -16,9 +16,9 @@ namespace StaffTrainee.Models
         public ApplicationUser User { get; set; }
         [Required]
         public string FullName { get; set; }
-        [Required]
-        [Range(1, 20, ErrorMessage = "Please enter Phone number value bigger than 0 and less than 20")]
-        public int Phone { get; set; }
+        [Required(ErrorMessage = "Required")]
+        [RegularExpression(@"^(\d{10})$", ErrorMessage = "Wrong mobile")]
+        public string Phone { get; set; }
 
     }
 }
