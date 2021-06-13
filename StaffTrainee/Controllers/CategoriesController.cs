@@ -106,18 +106,49 @@ namespace StaffTrainee.Controllers
             {
                 return View(category);
             }
-            if (categoryInDb == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //if (categoryInDb == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             categoryInDb.Description = category.Description;
             categoryInDb.Name = category.Name;
 
-            _context.SaveChanges();
 
+            try
+            {
+                _context.SaveChanges();
+
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException)
+            {
+                ModelState.AddModelError("", "Category Name alreay exists");
+                return View(category);
+            }
             return RedirectToAction("Index");
 
             //asdjhasdjaskdsahd
 
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(model);
+            //}
 
+            //var category = new Category
+            //{
+            //    Name = model.Name,
+            //    Description = model.Description
+            //};
+
+            //_context.Categories.Add(category);
+            //try
+            //{
+            //    _context.SaveChanges();
+
+            //}
+            //catch (System.Data.Entity.Infrastructure.DbUpdateException)
+            //{
+            //    ModelState.AddModelError("", "Category Name alreay exists");
+            //    return View(model);
+            //}
+            //return RedirectToAction("Index");
         }
     }
 }
