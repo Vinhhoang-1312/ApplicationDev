@@ -7,13 +7,13 @@ namespace StaffTrainee.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class addtableUserInforandupdateaccountviewmodel : IMigrationMetadata
+    public sealed partial class createUserInfortable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addtableUserInforandupdateaccountviewmodel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(createUserInfortable));
         
         string IMigrationMetadata.Id
         {
-            get { return "202106121458147_addtableUserInforandupdateaccountviewmodel"; }
+            get { return "202106130831080_createUserInfortable"; }
         }
         
         string IMigrationMetadata.Source

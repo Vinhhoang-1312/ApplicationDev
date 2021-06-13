@@ -207,9 +207,9 @@
     <Compile Include="Migrations\202106120326587_xoa[key]categorymodel.Designer.cs">
       <DependentUpon>202106120326587_xoa[key]categorymodel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202106121458147_addtableUserInforandupdateaccountviewmodel.cs" />
-    <Compile Include="Migrations\202106121458147_addtableUserInforandupdateaccountviewmodel.Designer.cs">
-      <DependentUpon>202106121458147_addtableUserInforandupdateaccountviewmodel.cs</DependentUpon>
+    <Compile Include="Migrations\202106130831080_createUserInfortable.cs" />
+    <Compile Include="Migrations\202106130831080_createUserInfortable.Designer.cs">
+      <DependentUpon>202106130831080_createUserInfortable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -325,8 +325,8 @@
     <EmbeddedResource Include="Migrations\202106120326587_xoa[key]categorymodel.resx">
       <DependentUpon>202106120326587_xoa[key]categorymodel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106121458147_addtableUserInforandupdateaccountviewmodel.resx">
-      <DependentUpon>202106121458147_addtableUserInforandupdateaccountviewmodel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106130831080_createUserInfortable.resx">
+      <DependentUpon>202106130831080_createUserInfortable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

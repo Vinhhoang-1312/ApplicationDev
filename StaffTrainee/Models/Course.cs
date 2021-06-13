@@ -19,6 +19,7 @@ namespace StaffTrainee.Models
         public Category Category { get; set; }    // Linking Object to Category model
 
         [Required]
+
         [Display(Name = "Course Name")]
         public String Name { get; set; }
         [Required]
