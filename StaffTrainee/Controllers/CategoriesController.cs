@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Microsoft.Ajax.Utilities;
+using Microsoft.AspNet.Identity;
 using StaffTrainee.Models;
 using System.Linq;
 using System.Net;
@@ -16,10 +17,18 @@ namespace StaffTrainee.Controllers
         }
         // GET: Categories
 
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            var categories = _context.Categories.ToList();
-            return View(categories);
+            var categoriesInDb = _context.Categories.ToList();
+
+
+
+            if (!searchString.IsNullOrWhiteSpace())
+            {
+                categoriesInDb = _context.Categories.Where(c => c.Name.Contains(searchString)).ToList();
+            }
+
+            return View(categoriesInDb);
         }
 
         [HttpGet]
