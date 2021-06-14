@@ -216,12 +216,26 @@
     <Compile Include="Migrations\202106130923338_addnumberforPhoneatUserInfortable.Designer.cs">
       <DependentUpon>202106130923338_addnumberforPhoneatUserInfortable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106141401107_deleteunique.cs" />
+    <Compile Include="Migrations\202106141401107_deleteunique.Designer.cs">
+      <DependentUpon>202106141401107_deleteunique.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106141416249_addenrollmentTraineetable.cs" />
+    <Compile Include="Migrations\202106141416249_addenrollmentTraineetable.Designer.cs">
+      <DependentUpon>202106141416249_addenrollmentTraineetable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106141421376_updatelai2bangenrollment.cs" />
+    <Compile Include="Migrations\202106141421376_updatelai2bangenrollment.Designer.cs">
+      <DependentUpon>202106141421376_updatelai2bangenrollment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\EnrollmentTrainer.cs" />
+    <Compile Include="Models\EnrollmentTrainee.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -338,6 +352,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106130923338_addnumberforPhoneatUserInfortable.resx">
       <DependentUpon>202106130923338_addnumberforPhoneatUserInfortable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106141401107_deleteunique.resx">
+      <DependentUpon>202106141401107_deleteunique.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106141416249_addenrollmentTraineetable.resx">
+      <DependentUpon>202106141416249_addenrollmentTraineetable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106141421376_updatelai2bangenrollment.resx">
+      <DependentUpon>202106141421376_updatelai2bangenrollment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

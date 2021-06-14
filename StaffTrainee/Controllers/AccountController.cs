@@ -167,7 +167,11 @@ namespace StaffTrainee.Controllers
 
                     };
                     _context.UserInfos.Add(userInfo);
+
+
                     _context.SaveChanges();
+
+
 
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 

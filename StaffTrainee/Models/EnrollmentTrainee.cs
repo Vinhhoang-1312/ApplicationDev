@@ -7,20 +7,18 @@ using System.Web;
 
 namespace StaffTrainee.Models
 {
-    public class UserInfo
+    public class EnrollmentTrainee
     {
-
         [Key]
+        [Column(Order = 1)]
         [ForeignKey("User")]
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
-        [Required]
-        public string FullName { get; set; }
-
-        [Required(ErrorMessage = "Required")]
-        [RegularExpression(@"^(\d{10})$", ErrorMessage = "Wrong mobile")]
-
-        public string Phone { get; set; }
+        [Key]
+        [Column(Order = 2)]
+        [ForeignKey("Course")]
+        public int CourseId { get; set; }
+        public Course Course { get; set; }
 
     }
 }
