@@ -11,6 +11,7 @@ using System.Data.Entity;
 
 namespace StaffTrainee.Controllers
 {
+    [Authorize]
     public class CoursesController : Controller
     {
         private ApplicationDbContext _context;
@@ -22,6 +23,7 @@ namespace StaffTrainee.Controllers
         // GET: Course
 
         [HttpGet]
+        [Authorize(Roles = "Staff, Trainee")]
         public ActionResult Index(string searchString)
         {
 
@@ -46,6 +48,7 @@ namespace StaffTrainee.Controllers
             return View(coursesInDb);
         }
         [HttpGet]
+        [Authorize(Roles = "Staff")]
         public ActionResult Create()
         {
             var viewModel = new CourseCategoriesViewModel()
@@ -57,6 +60,7 @@ namespace StaffTrainee.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Staff")]
         public ActionResult Create(Course course)
         {
             if (!ModelState.IsValid)
@@ -87,6 +91,7 @@ namespace StaffTrainee.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "Staff")]
         public ActionResult Edit(int? id)
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -109,6 +114,7 @@ namespace StaffTrainee.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Staff")]
         public ActionResult Edit(Course course)
         {
             //var userId = User.Identity.GetUserId();
@@ -138,6 +144,7 @@ namespace StaffTrainee.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Staff")]
         public ActionResult Delete(int? id)
         {
             //var userId = User.Identity.GetUserId();
