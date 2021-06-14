@@ -162,5 +162,14 @@ namespace StaffTrainee.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult AssignTrainees()
+        {
+            return View();
+        }
+        public ActionResult AssignTrainers()
+        {
+            return View();
+        }
     }
 }
