@@ -41,28 +41,32 @@
     <tbody>
         @foreach (var course in Model)
         {
-            <tr>
-                <th scope="row">@course.Id</th>
-                <td>@course.Category.Name</td>
-                <td>@course.Name</td>
-                <td>@course.Description</td>
-                <td>
+        <tr>
+            <th scope="row">@course.Id</th>
+            <td>@course.Category.Name</td>
+            <td>@course.Name</td>
+            <td>@course.Description</td>
 
-                    @Html.ActionLink("Edit", // <-- Link text
-                                                     "Edit", // <-- Action Method Name
-                                                     "Courses", // <-- Controller Name
-                                                     new { id = course.Id }, // <-- Route value
-                                                     new { @class = "btn btn-default" } // <-- htmlArguments
-                                                 )
+            @if (User.IsInRole("Staff"))
+            {
+            <td>
+                @Html.ActionLink("Edit", // <-- Link text
+                                                 "Edit", // <-- Action Method Name
+                                                 "Courses", // <-- Controller Name
+                                                 new { id = course.Id }, // <-- Route value
+                                                 new { @class = "btn btn-default" } // <-- htmlArguments
+                                             )
 
-                    @Html.ActionLink("Delete", // <-- Link text
-                                                     "Delete", // <-- Action Method Name
-                                                     "Courses", // <-- Controller Name
-                                                     new { id = course.Id }, // <-- Route value
-                                                     new { @class = "btn btn-danger" } // <-- htmlArguments
-                                                 )
-                </td>
-            </tr>
+                @Html.ActionLink("Delete", // <-- Link text
+                                                 "Delete", // <-- Action Method Name
+                                                 "Courses", // <-- Controller Name
+                                                 new { id = course.Id }, // <-- Route value
+                                                 new { @class = "btn btn-danger" } // <-- htmlArguments
+                                             )
+            </td> 
+            }
+            
+        </tr>
         }
     </tbody>
 </table>
