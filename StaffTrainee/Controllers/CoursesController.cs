@@ -170,23 +170,7 @@ namespace StaffTrainee.Controllers
             return RedirectToAction("Index");
         }
 
-        //ENROLLMENT
 
-
-        [Authorize(Roles = "Staff")]
-
-        [HttpGet]
-        public ActionResult Details(int id)
-        {
-            var users = _context.EnrollmentTrainees
-              .Where(t => t.CourseId == id)
-              .Select(t => t.User)
-              .ToList();
-
-            ViewBag.CourseId = id;
-
-            return View(users);
-        }
 
 
 
@@ -232,8 +216,8 @@ namespace StaffTrainee.Controllers
             var users = _context.Users.ToList();
 
             var usersInCourse = _context.EnrollmentTrainees
-              .Where(t => t.CourseId == id)
-              .Select(t => t.User)
+              .Where(a => a.CourseId == id)
+              .Select(a => a.User)
               .ToList();
 
             var viewmodel = new EnrollmentTraineeViewModel();
@@ -249,13 +233,13 @@ namespace StaffTrainee.Controllers
 
             var usersWithUserRole = new List<ApplicationUser>();
 
-            foreach (var user in users)
+            foreach (var trainee in users)
             {
-                if (_userManager.GetRoles(user.Id)[0].Equals("Trainee")
-                  && !usersInCourse.Contains(user)
+                if (_userManager.GetRoles(trainee.Id)[0].Equals("Trainee")
+                  && !usersInCourse.Contains(trainee)
                   )
                 {
-                    usersWithUserRole.Add(user);
+                    usersWithUserRole.Add(trainee);
                 }
             }
 
@@ -272,16 +256,16 @@ namespace StaffTrainee.Controllers
         [HttpPost]
         public ActionResult AssignTrainee(EnrollmentTrainee model)
         {
-            var EnrollmentTrainee = new EnrollmentTrainee
+            var enrollmentTrainee = new EnrollmentTrainee
             {
                 CourseId = model.CourseId,
                 UserId = model.UserId
             };
 
-            _context.EnrollmentTrainees.Add(EnrollmentTrainee);
+            _context.EnrollmentTrainees.Add(enrollmentTrainee);
             _context.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexAssignTrainee");
         }
         [Authorize(Roles = "Staff")]
 
@@ -296,7 +280,7 @@ namespace StaffTrainee.Controllers
             _context.EnrollmentTrainees.Remove(EnrollmentTrainee);
             _context.SaveChanges();
 
-            return RedirectToAction("DetailsAssignTrainee", new { id = id });
+            return RedirectToAction("NumberofTrainee", new { id = id });
         }
 
         [Authorize(Roles = "Trainee")]

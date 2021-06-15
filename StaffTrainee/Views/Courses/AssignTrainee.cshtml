@@ -1,19 +1,19 @@
 ﻿@model StaffTrainee.ViewModels.EnrollmentTraineeViewModel
 @{
-    ViewBag.Title = "AsignTrainee";
+    ViewBag.Title = "AssignTrainee";
 }
 
 <h2>Asign Trainee To Course</h2>
 
 @Html.ValidationSummary(false, "", new { @class = "bg-danger" })
 
-@using (Html.BeginForm("AsignTrainee", "Courses", FormMethod.Post))
+@using (Html.BeginForm("AssignTrainee", "Courses", FormMethod.Post))
 {
 
     <div class="form-group">
-        Username
+        USERNAME
         @Html.HiddenFor(m => m.CourseId)
-        @Html.DropDownListFor(m => m.CourseId,
+        @Html.DropDownListFor(m => m.UserId,
          new SelectList(Model.Users, "Id", "Username"),
          new { @class = "form-control" }
          )
