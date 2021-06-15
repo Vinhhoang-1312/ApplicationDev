@@ -14,9 +14,6 @@
 
 
 
-
-
-
 <table class="table">
     <thead class="thead-light">
         <tr>
@@ -34,19 +31,28 @@
                 
                 <td>
                     @Html.ActionLink(
-                "See Team Members",
-                "Details",
-                "Teams",
+                "See Courses Members",
+                "NumberofTrainee",
+                "Courses",
                 new { id = course.Id },
                 new { @class = "btn btn-info" }
               )
                     @Html.ActionLink(
-                      "Add User To Team",
-                      "AddMember",
-                      "Teams",
+                      "Assign Trainee To Course",
+                      "AssignTrainee",
+                      "Courses",
                       new { id = course.Id },
                       new { @class = "btn btn-success" }
-                    )
+                    ) 
+                     @Html.ActionLink(
+                      "Remove Trainee To Course",
+                      "RemoveAssignTrainee",
+                      "Courses",
+                      new { id = course.Id },
+                      new { @class = "btn btn-danger" }
+                    ) 
+
+
                 </td>
 
 

@@ -260,6 +260,7 @@ namespace StaffTrainee.Controllers
 
         //
         // GET: /Account/Register
+
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -268,6 +269,7 @@ namespace StaffTrainee.Controllers
 
         //
         // POST: /Account/Register
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]

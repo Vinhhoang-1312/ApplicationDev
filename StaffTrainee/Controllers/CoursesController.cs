@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace StaffTrainee.Controllers
 {
@@ -21,6 +22,8 @@ namespace StaffTrainee.Controllers
         public CoursesController()
         {
             _context = new ApplicationDbContext();
+            _userManager = new UserManager<ApplicationUser>(
+       new UserStore<ApplicationUser>(new ApplicationDbContext()));
         }
         // GET: Course
 
@@ -210,7 +213,7 @@ namespace StaffTrainee.Controllers
         [Authorize(Roles = "Staff")]
 
         [HttpGet]
-        public ActionResult DetailsAssignTrainee(int id)
+        public ActionResult NumberofTrainee(int id)
         {
             var users = _context.EnrollmentTrainees
               .Where(t => t.CourseId == id)
@@ -224,7 +227,7 @@ namespace StaffTrainee.Controllers
         [Authorize(Roles = "Staff")]
 
         [HttpGet]
-        public ActionResult AddMemberAssignTrainee(int id)
+        public ActionResult AssignTrainee(int id)
         {
             var users = _context.Users.ToList();
 
@@ -233,22 +236,22 @@ namespace StaffTrainee.Controllers
               .Select(t => t.User)
               .ToList();
 
-            var VM = new EnrollmentTraineeViewModel();
+            var viewmodel = new EnrollmentTraineeViewModel();
 
             if (usersInCourse == null)
             {
-                VM.CourseId = id;
-                VM.Users = users;
+                viewmodel.CourseId = id;
+                viewmodel.Users = users;
 
 
-                return View(VM);
+                return View(viewmodel);
             }
 
             var usersWithUserRole = new List<ApplicationUser>();
 
             foreach (var user in users)
             {
-                if (_userManager.GetRoles(user.Id)[0].Equals("user")
+                if (_userManager.GetRoles(user.Id)[0].Equals("Trainee")
                   && !usersInCourse.Contains(user)
                   )
                 {
@@ -267,7 +270,7 @@ namespace StaffTrainee.Controllers
         [Authorize(Roles = "Staff")]
 
         [HttpPost]
-        public ActionResult AddMemberAssignTrainee(EnrollmentTrainee model)
+        public ActionResult AssignTrainee(EnrollmentTrainee model)
         {
             var EnrollmentTrainee = new EnrollmentTrainee
             {
@@ -283,7 +286,7 @@ namespace StaffTrainee.Controllers
         [Authorize(Roles = "Staff")]
 
         [HttpGet]
-        public ActionResult RemoveUserAssignTrainee(int id, string userId)
+        public ActionResult RemoveAssignTrainee(int id, string userId)
         {
             var EnrollmentTrainee = _context.EnrollmentTrainees
               .SingleOrDefault(t => t.CourseId == id && t.UserId == userId);

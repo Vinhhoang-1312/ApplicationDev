@@ -228,6 +228,10 @@
     <Compile Include="Migrations\202106141421376_updatelai2bangenrollment.Designer.cs">
       <DependentUpon>202106141421376_updatelai2bangenrollment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106151116588_addviewmodelassigntrainee.cs" />
+    <Compile Include="Migrations\202106151116588_addviewmodelassigntrainee.Designer.cs">
+      <DependentUpon>202106151116588_addviewmodelassigntrainee.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -310,6 +314,8 @@
     <Content Include="Views\Account\CreateTrainer.cshtml" />
     <Content Include="Views\Account\CreateTrainee.cshtml" />
     <Content Include="Views\Courses\IndexAssignTrainee.cshtml" />
+    <Content Include="Views\Courses\AssignTrainee.cshtml" />
+    <Content Include="Views\Courses\NumberofTrainee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -367,6 +373,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106141421376_updatelai2bangenrollment.resx">
       <DependentUpon>202106141421376_updatelai2bangenrollment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106151116588_addviewmodelassigntrainee.resx">
+      <DependentUpon>202106151116588_addviewmodelassigntrainee.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
