@@ -7,92 +7,92 @@
 
 @if (User.IsInRole("Staff"))
 {
-    <div class="form-group">
-        @Html.ActionLink("Add new Course", // <-- Link text
-                              "Create", // <-- Action Method Name
-                              "Courses", // <-- Controller Name
-                              null, // <-- Route value
-                              new { @class = "btn btn-info" } // <-- htmlArguments
-                              )
-        @Html.ActionLink("Assign COURSE to TRAINEE", // <-- Link text
-                            "AssignTrainees", // <-- Action Method Name
-                            "Courses", // <-- Controller Name
-                            null, // <-- Route value
-                            new { @class = "btn btn-info" } // <-- htmlArguments
-                            )
-        @Html.ActionLink("Assign COURSE to TRAINER", // <-- Link text
-                              "AssignTrainers", // <-- Action Method Name
-                              "Courses", // <-- Controller Name
-                              null, // <-- Route value
-                              new { @class = "btn btn-info" } // <-- htmlArguments
-                              )
+<div class="form-group">
+    @Html.ActionLink("Add new Course", // <-- Link text
+                          "Create", // <-- Action Method Name
+                          "Courses", // <-- Controller Name
+                          null, // <-- Route value
+                          new { @class = "btn btn-info" } // <-- htmlArguments
+                          )
+    @Html.ActionLink("Manager Assign", // <-- Link text
+                          "ManagerAssign", // <-- Action Method Name
+                          "Courses", // <-- Controller Name
+                          null, // <-- Route value
+                          new { @class = "btn btn-info" } // <-- htmlArguments
+                          )
 
 
 
-    </div>
+</div>
 
 
 
 }
 
-<!-- Load icon library -->
-@*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">*@
 
-@using (Html.BeginForm("Index", "Courses", FormMethod.Get))
-{
+    <!-- Load icon library -->
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">*@
 
-   
-    <div class="col-lg-4">
-        <div class="input-group">
-            <input type="text" class="form-control" id="SearchString" name="SearchString" placeholder="Sreach by Course Name..." />
-            <span class="input-group-btn">
-                <button class="btn btn-primary" type="submit">Search</button>
-            </span>
+    @using (Html.BeginForm("Index", "Courses", FormMethod.Get))
+    {
+
+
+        <div class="col-lg-4">
+            <div class="input-group">
+                <input type="text" class="form-control" id="SearchString" name="SearchString" placeholder="Sreach by Course Name..." />
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </span>
+            </div>
         </div>
-    </div>
 
-}
+    }
 
 
-<table class="table">
-    <thead class="thead-light">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Category</th>
-            <th scope="col">Name</th>
-            <th scope="col">Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var course in Model)
-        {
+    <table class="table">
+        <thead class="thead-light">
             <tr>
-                <th scope="row">@course.Id</th>
-                <td>@course.Category.Name</td>
-                <td>@course.Name</td>
-                <td>@course.Description</td>
-
-                @if (User.IsInRole("Staff"))
-                {
-                    <td>
-                        @Html.ActionLink("Edit", // <-- Link text
-                                                         "Edit", // <-- Action Method Name
-                                                         "Courses", // <-- Controller Name
-                                                         new { id = course.Id }, // <-- Route value
-                                                         new { @class = "btn btn-default" } // <-- htmlArguments
-                                                     )
-
-                        @Html.ActionLink("Delete", // <-- Link text
-                                                         "Delete", // <-- Action Method Name
-                                                         "Courses", // <-- Controller Name
-                                                         new { id = course.Id }, // <-- Route value
-                                                         new { @class = "btn btn-danger" } // <-- htmlArguments
-                                                     )
-                    </td>
-
-                }
-
+                <th scope="col">#</th>
+                <th scope="col">Category</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var course in Model)
+            {
+                <tr>
+                    <th scope="row">@course.Id</th>
+                    <td>@course.Category.Name</td>
+                    <td>@course.Name</td>
+                    <td>@course.Description</td>
+
+                    @if (User.IsInRole("Staff"))
+                    {
+                        <td>
+                            @Html.ActionLink("Edit", // <-- Link text
+                                                             "Edit", // <-- Action Method Name
+                                                             "Courses", // <-- Controller Name
+                                                             new { id = course.Id }, // <-- Route value
+                                                             new { @class = "btn btn-default" } // <-- htmlArguments
+                                                         )
+
+                            @Html.ActionLink("Delete", // <-- Link text
+                                                             "Delete", // <-- Action Method Name
+                                                             "Courses", // <-- Controller Name
+                                                             new { id = course.Id }, // <-- Route value
+                                                             new { @class = "btn btn-danger" } // <-- htmlArguments
+                                                         )
+                        </td>
+
+
+                    }
+
+                </tr>
+
+
+
+
+            }
+        </tbody>
+    </table>

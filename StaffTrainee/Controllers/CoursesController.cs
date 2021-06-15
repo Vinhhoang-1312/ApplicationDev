@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using Microsoft.AspNet.Identity;
 
 namespace StaffTrainee.Controllers
 {
@@ -16,6 +17,7 @@ namespace StaffTrainee.Controllers
     {
         private ApplicationDbContext _context;
 
+        private UserManager<ApplicationUser> _userManager;
         public CoursesController()
         {
             _context = new ApplicationDbContext();
@@ -35,9 +37,11 @@ namespace StaffTrainee.Controllers
                 .ToList();
             //.Where(t => t.UserId.Equals(userId))
 
-            //var todoesInDb = _context.Todoes
-            //    .Include(t => t.Category)
-            //    .ToList();
+
+
+
+
+
 
 
             if (!searchString.IsNullOrWhiteSpace())
@@ -163,13 +167,150 @@ namespace StaffTrainee.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult AssignTrainees()
+        //ENROLLMENT
+
+
+        [Authorize(Roles = "Staff")]
+
+        [HttpGet]
+        public ActionResult Details(int id)
         {
-            return View();
+            var users = _context.EnrollmentTrainees
+              .Where(t => t.CourseId == id)
+              .Select(t => t.User)
+              .ToList();
+
+            ViewBag.CourseId = id;
+
+            return View(users);
         }
-        public ActionResult AssignTrainers()
+
+
+
+
+
+        /// //////////////////////////////////////////////////////// /// //////////////////////////////////////////////////////// /// 
+        /// //////////////////////////////////////////////////////// /// //////////////////////////////////////////////////////// /// 
+        /// //////////////////////////////////////////////////////// /// //////////////////////////////////////////////////////// /// 
+        /// //////////////////////////////////////////////////////// /// //////////////////////////////////////////////////////// /// 
+        /// //////////////////////////////////////////////////////// /// //////////////////////////////////////////////////////// /// 
+        /// //////////////////////////////////////////////////////// /// //////////////////////////////////////////////////////// /// 
+        /// //////////////////////////////////////////////////////// /// //////////////////////////////////////////////////////// /// 
+        /// //////////////////////////////////////////////////////// /// //////////////////////////////////////////////////////// /// 
+        //ENROLLMENT TRAINEES
+
+        [Authorize(Roles = "Staff")]
+        // GET: enrollment
+        [HttpGet]
+        public ActionResult IndexAssignTrainee()
         {
-            return View();
+            var courses = _context.Courses.ToList();
+            return View(courses);
+        }
+        [Authorize(Roles = "Staff")]
+
+        [HttpGet]
+        public ActionResult DetailsAssignTrainee(int id)
+        {
+            var users = _context.EnrollmentTrainees
+              .Where(t => t.CourseId == id)
+              .Select(t => t.User)
+              .ToList();
+
+            ViewBag.CourseId = id;
+
+            return View(users);
+        }
+        [Authorize(Roles = "Staff")]
+
+        [HttpGet]
+        public ActionResult AddMemberAssignTrainee(int id)
+        {
+            var users = _context.Users.ToList();
+
+            var usersInCourse = _context.EnrollmentTrainees
+              .Where(t => t.CourseId == id)
+              .Select(t => t.User)
+              .ToList();
+
+            var VM = new EnrollmentTraineeViewModel();
+
+            if (usersInCourse == null)
+            {
+                VM.CourseId = id;
+                VM.Users = users;
+
+
+                return View(VM);
+            }
+
+            var usersWithUserRole = new List<ApplicationUser>();
+
+            foreach (var user in users)
+            {
+                if (_userManager.GetRoles(user.Id)[0].Equals("user")
+                  && !usersInCourse.Contains(user)
+                  )
+                {
+                    usersWithUserRole.Add(user);
+                }
+            }
+
+            var viewModel = new EnrollmentTraineeViewModel
+            {
+                CourseId = id,
+                Users = usersWithUserRole
+            };
+
+            return View(viewModel);
+        }
+        [Authorize(Roles = "Staff")]
+
+        [HttpPost]
+        public ActionResult AddMemberAssignTrainee(EnrollmentTrainee model)
+        {
+            var EnrollmentTrainee = new EnrollmentTrainee
+            {
+                CourseId = model.CourseId,
+                UserId = model.UserId
+            };
+
+            _context.EnrollmentTrainees.Add(EnrollmentTrainee);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+        [Authorize(Roles = "Staff")]
+
+        [HttpGet]
+        public ActionResult RemoveUserAssignTrainee(int id, string userId)
+        {
+            var EnrollmentTrainee = _context.EnrollmentTrainees
+              .SingleOrDefault(t => t.CourseId == id && t.UserId == userId);
+
+            if (EnrollmentTrainee == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            _context.EnrollmentTrainees.Remove(EnrollmentTrainee);
+            _context.SaveChanges();
+
+            return RedirectToAction("DetailsAssignTrainee", new { id = id });
+        }
+
+        [Authorize(Roles = "Trainee")]
+        public ActionResult Mine()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var courses = _context.EnrollmentTrainees
+              .Where(t => t.UserId.Equals(userId))
+              .Select(t => t.Course)
+              .ToList();
+
+            return View(courses);
         }
     }
+
+
+
+}
 }
