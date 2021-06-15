@@ -211,6 +211,52 @@ namespace StaffTrainee.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Staff")]
+        [HttpGet]
+        public ActionResult CreateTrainee()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Staff")]
+        [HttpPost]
+        public async Task<ActionResult> CreateTrainee(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                UserManager.AddToRole(user.Id, "Trainee");
+                if (result.Succeeded)
+                {
+                    var userInfo = new UserInfo
+                    {
+                        FullName = model.FullName,
+                        Phone = model.Phone,
+                        UserId = user.Id
+
+                    };
+                    _context.UserInfos.Add(userInfo);
+
+
+                    _context.SaveChanges();
+
+                    return RedirectToAction("Index", "Home");
+                }
+                AddErrors(result);
+            }
+
+            return View(model);
+        }
+
+
+
+
+
+
+
+
+
 
         //
         // GET: /Account/Register

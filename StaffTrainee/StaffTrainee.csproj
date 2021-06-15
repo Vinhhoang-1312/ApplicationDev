@@ -308,6 +308,8 @@
     <Content Include="Views\Courses\AssignTrainees.cshtml" />
     <Content Include="Views\Courses\AssignTrainers.cshtml" />
     <Content Include="Views\Account\CreateStaff.cshtml" />
+    <Content Include="Views\Account\CreateTrainer.cshtml" />
+    <Content Include="Views\Account\CreateTrainee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
