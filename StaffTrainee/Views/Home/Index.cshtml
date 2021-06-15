@@ -18,6 +18,22 @@
         <h2>Welcome Staff</h2>
 
     }
+    @if (User.IsInRole("Admin"))
+    {
+        <h2>Welcome Admin</h2>
+
+    } 
+    @if (User.IsInRole("Trainer"))
+    {
+        <h2>Welcome Trainer</h2>
+
+    }
+
+
+
+
+
+
     @if (Request.IsAuthenticated)
     {
         <p>Username: @User.Identity.GetUserName()</p>

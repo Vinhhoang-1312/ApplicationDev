@@ -137,6 +137,80 @@ namespace StaffTrainee.Controllers
                     return View(model);
             }
         }
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        public ActionResult CreateStaff()
+        {
+            return View();
+        }
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public async Task<ActionResult> CreateStaff(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                UserManager.AddToRole(user.Id, "Staff");
+                if (result.Succeeded)
+                {
+                    var userInfo = new UserInfo
+                    {
+                        FullName = model.FullName,
+                        Phone = model.Phone,
+                        UserId = user.Id
+
+                    };
+                    _context.UserInfos.Add(userInfo);
+
+
+                    _context.SaveChanges();
+
+                    return RedirectToAction("Index", "Home");
+                }
+                AddErrors(result);
+            }
+
+            return View(model);
+        }
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        public ActionResult CreateTrainer()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public async Task<ActionResult> CreateTrainer(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                UserManager.AddToRole(user.Id, "Trainer");
+                if (result.Succeeded)
+                {
+                    var userInfo = new UserInfo
+                    {
+                        FullName = model.FullName,
+                        Phone = model.Phone,
+                        UserId = user.Id
+
+                    };
+                    _context.UserInfos.Add(userInfo);
+
+
+                    _context.SaveChanges();
+
+                    return RedirectToAction("Index", "Home");
+                }
+                AddErrors(result);
+            }
+
+            return View(model);
+        }
+
 
         //
         // GET: /Account/Register

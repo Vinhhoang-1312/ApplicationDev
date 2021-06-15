@@ -1,5 +1,4 @@
 ﻿using Microsoft.Ajax.Utilities;
-using Microsoft.AspNet.Identity;
 using StaffTrainee.Models;
 using System.Linq;
 using System.Net;
@@ -152,7 +151,3 @@ namespace StaffTrainee.Controllers
         }
     }
 }
-
-
-
-
