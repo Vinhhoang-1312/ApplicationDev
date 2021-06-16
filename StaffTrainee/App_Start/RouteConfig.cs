@@ -18,11 +18,11 @@ namespace StaffTrainee
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
-            //       routes.MapRoute(
-            //  name: "RemoveAssignTrainee",
-            //  url: "{controller}/{action}/{id}/{userid}",
-            //  new { controller = "Courses", action = "RemoveAssignTrainee", id = "", userId = "" }
-            //);
+            routes.MapRoute(
+       name: "RemoveAssignTrainee",
+       url: "{controller}/{action}/{id}/{userid}",
+       new { controller = "Courses", action = "RemoveAssignTrainee", id = "", userId = "" }
+     );
         }
     }
 }

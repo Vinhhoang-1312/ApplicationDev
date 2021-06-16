@@ -1,6 +1,8 @@
 ﻿@model IEnumerable<StaffTrainee.Models.Course>
 @{
     ViewBag.Title = "Index";
+
+
 }
 
 <h2>Assign Trainee to Course Index</h2>
@@ -12,7 +14,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-
+@if (User.IsInRole("Staff"))
+{
 
 <table class="table">
     <thead class="thead-light">
@@ -30,27 +33,22 @@
                 <td>@course.Name</td>
                 
                 <td>
+                    
                     @Html.ActionLink(
-                "See Courses Members",
-                "NumberofTrainee",
-                "Courses",
-                new { id = course.Id },
-                new { @class = "btn btn-info" }
-              )
+         "See Courses Members",
+         "NumberofTrainee",
+         "Courses",
+         new { id = course.Id },
+         new { @class = "btn btn-info" }
+       )
                     @Html.ActionLink(
-                      "Assign Trainee To Course",
-                      "AssignTrainee",
-                      "Courses",
-                      new { id = course.Id },
-                      new { @class = "btn btn-success" }
-                    ) 
-                     @Html.ActionLink(
-                      "Remove Trainee To Course",
-                      "RemoveAssignTrainee",
-                      "Courses",
-                      new { id = course.Id },
-                      new { @class = "btn btn-danger" }
-                    ) 
+               "Assign Trainee To Course",
+               "AssignTrainee",
+               "Courses",
+               new { id = course.Id },
+               new { @class = "btn btn-success" }
+             ) 
+                    
 
 
                 </td>
@@ -71,3 +69,4 @@
 
 
 
+}
