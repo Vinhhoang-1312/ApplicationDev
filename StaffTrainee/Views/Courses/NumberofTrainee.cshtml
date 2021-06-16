@@ -14,31 +14,33 @@
       new { @class = "btn btn-primary" }
     )
 </div>
-
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var user in Model)
-        {
+@if (User.IsInRole("Staff"))
+{
+    <table class="table table-hover">
+        <thead>
             <tr>
-                <td>@user.Email</td>
-                <td>@user.UserName</td>
-                <td>
-                    @Html.ActionLink(
-                      "Remove User From Courses",
-                      "RemoveAssignTrainee",
-                      new { id = ViewBag.CourseId, userId = user.Id },
-                      new { @class = "btn btn-danger" }
-
-                    )
-                </td>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Action</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Email</td>
+                    <td>@user.UserName</td>
+                    <td>
+                        @Html.ActionLink(
+               "Remove User From Courses",
+               "RemoveAssignTrainee",
+               new { id = ViewBag.CourseId, userId = user.Id },
+               new { @class = "btn btn-danger" }
+
+             )
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

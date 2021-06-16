@@ -245,6 +245,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CourseCategoriesViewModel.cs" />
+    <Compile Include="ViewModels\EnrollmentTrainerViewModel.cs" />
     <Compile Include="ViewModels\EnrollmentTraineeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -316,6 +317,11 @@
     <Content Include="Views\Courses\IndexAssignTrainee.cshtml" />
     <Content Include="Views\Courses\AssignTrainee.cshtml" />
     <Content Include="Views\Courses\NumberofTrainee.cshtml" />
+    <Content Include="Views\Courses\IndexAssignTrainer.cshtml" />
+    <Content Include="Views\Courses\AssignTrainer.cshtml" />
+    <Content Include="Views\Courses\NumberofTrainer.cshtml" />
+    <Content Include="Views\Courses\MineTrainee.cshtml" />
+    <Content Include="Views\Courses\MineTrainer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

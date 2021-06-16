@@ -284,7 +284,7 @@ namespace StaffTrainee.Controllers
         }
 
         [Authorize(Roles = "Trainee")]
-        public ActionResult Mine()
+        public ActionResult MineTrainee()
         {
             var userId = User.Identity.GetUserId();
 
@@ -295,6 +295,136 @@ namespace StaffTrainee.Controllers
 
             return View(courses);
         }
+
+
+
+
+
+        /// //////////////////////////////////////////////////////// /// //////////////////////////////////////////////////////// /// 
+        /// //////////////////////////////////////////////////////// /// //////////////////////////////////////////////////////// /// 
+        /// //////////////////////////////////////////////////////// /// //////////////////////////////////////////////////////// /// 
+        /// //////////////////////////////////////////////////////// /// //////////////////////////////////////////////////////// /// 
+        /// //////////////////////////////////////////////////////// /// //////////////////////////////////////////////////////// /// 
+        /// //////////////////////////////////////////////////////// /// //////////////////////////////////////////////////////// /// 
+        /// //////////////////////////////////////////////////////// /// //////////////////////////////////////////////////////// /// 
+        /// //////////////////////////////////////////////////////// /// //////////////////////////////////////////////////////// /// 
+        //ENROLLMENT TRAINER
+
+        [Authorize(Roles = "Staff")]
+        // GET: enrollment
+        [HttpGet]
+        public ActionResult IndexAssignTrainer()
+        {
+            var courses = _context.Courses.ToList();
+            return View(courses);
+        }
+        [Authorize(Roles = "Staff")]
+
+        [HttpGet]
+        public ActionResult NumberofTrainer(int id)
+        {
+            var users = _context.EnrollmentTrainers
+              .Where(t => t.CourseId == id)
+              .Select(t => t.User)
+              .ToList();
+
+            ViewBag.CourseId = id;
+
+            return View(users);
+        }
+        [Authorize(Roles = "Staff")]
+
+        [HttpGet]
+        public ActionResult AssignTrainer(int id)
+        {
+            var users = _context.Users.ToList();
+
+            var usersInCourse = _context.EnrollmentTrainers
+              .Where(a => a.CourseId == id)
+              .Select(a => a.User)
+              .ToList();
+
+            var viewmodel = new EnrollmentTrainerViewModel();
+
+            if (usersInCourse == null)
+            {
+                viewmodel.CourseId = id;
+                viewmodel.Users = users;
+
+
+                return View(viewmodel);
+            }
+
+            var usersWithUserRole = new List<ApplicationUser>();
+
+            foreach (var trainer in users)
+            {
+                if (_userManager.GetRoles(trainer.Id)[0].Equals("Trainer")
+                  && !usersInCourse.Contains(trainer)
+                  )
+                {
+                    usersWithUserRole.Add(trainer);
+                }
+            }
+
+            var viewModel = new EnrollmentTrainerViewModel
+            {
+                CourseId = id,
+                Users = usersWithUserRole
+            };
+
+            return View(viewModel);
+        }
+        [Authorize(Roles = "Staff")]
+
+        [HttpPost]
+        public ActionResult AssignTrainer(EnrollmentTrainer model)
+        {
+            var enrollmentTrainer = new EnrollmentTrainer
+            {
+                CourseId = model.CourseId,
+                UserId = model.UserId
+            };
+
+            _context.EnrollmentTrainers.Add(enrollmentTrainer);
+            _context.SaveChanges();
+
+            return RedirectToAction("IndexAssignTrainer");
+        }
+        [Authorize(Roles = "Staff")]
+
+        [HttpGet]
+        public ActionResult RemoveAssignTrainer(int id, string userId)
+        {
+            var EnrollmentTrainer = _context.EnrollmentTrainers
+              .SingleOrDefault(t => t.CourseId == id && t.UserId == userId);
+
+            if (EnrollmentTrainer == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            _context.EnrollmentTrainers.Remove(EnrollmentTrainer);
+            _context.SaveChanges();
+
+            return RedirectToAction("NumberofTrainer", new { id = id });
+        }
+
+        [Authorize(Roles = "Trainer")]
+        public ActionResult MineTrainer()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var courses = _context.EnrollmentTrainers
+              .Where(t => t.UserId.Equals(userId))
+              .Select(t => t.Course)
+              .ToList();
+
+            return View(courses);
+        }
+
+
+
+
+
+
     }
 
 
