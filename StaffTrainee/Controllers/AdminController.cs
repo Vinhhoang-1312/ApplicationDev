@@ -15,6 +15,7 @@ namespace StaffTrainee.Controllers
     {
         private ApplicationDbContext _context;
         private UserManager<ApplicationUser> _userManager;
+
         public AdminController()
         {
             _context = new ApplicationDbContext();
@@ -47,26 +48,21 @@ namespace StaffTrainee.Controllers
 
 
 
-
+        //DELETE ACCOUNT
+        [HttpGet]
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(string id)
         {
-            //var userId = User.Identity.GetUserId();
+            var AccountInDB = _context.Users.SingleOrDefault(p => p.Id == id);
 
-            var userInfoes = _context.Users
-                // .Where(t => t.UserId.Equals(userId))
-                .SingleOrDefault(s => s.UserName == id);
+            if (AccountInDB == null)
+            {
+                return HttpNotFound();
+            }
 
-            _context.Users.Remove(userInfoes);
+            _context.Users.Remove(AccountInDB);
             _context.SaveChanges();
-            //var userInDb = _context.Users
-            //    .Where(t => t.Id.Equals(userId))
-            //    .SingleOrDefault(s => s.Id == id);
-
-            //_context.Users.Remove(userInDb);
-            //_context.SaveChanges();
-
-            return RedirectToAction("GetStaffs");
+            return RedirectToAction("Index");
         }
 
 

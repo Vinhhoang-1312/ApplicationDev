@@ -30,27 +30,31 @@
 
                     <li class="list-group-item">
                         @staff.UserName
-                        <div>
-
-                            @Html.ActionLink(
-               "Reset staff Password",
-               "ResetStaffPassword",
-               "Account",
-               new { id = staff.Id },
-               new { @class = "text-info" }
-             )   
-                            
-                            @Html.ActionLink("Delete", // <-- Link text
-                                                                                "Delete", // <-- Action Method Name
-                                                                                "Admin", // <-- Controller Name
-                                                                                new { id = staff.Id }, // <-- Route value
-                                                                                new { @class = "btn btn-danger" })   @*htmlArguments*@
-                                                                                
 
 
-                                                                                              
-                    </li>
-                }
+                        @Html.ActionLink(
+           "Reset staff Password",
+           "ResetStaffPassword",
+           "Account",
+           new { id = staff.Id },
+           new { @class = "text-info" }
+         )
+
+
+                        @Html.ActionLink("Delete", // <-- Link text
+                                                                            "Delete", // <-- Action Method Name
+                                                                            "Admin", // <-- Controller Name
+                                                                            new { id = staff.Id }, // <-- Route value
+                                                                            new { @class = "btn btn-danger" })   @*htmlArguments*@
+
+                        
+                       
+
+
+
+
+                                                                        </li>
+                                                                    }
             </ul>
         </div>
     </div>

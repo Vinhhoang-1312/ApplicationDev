@@ -10,14 +10,16 @@
 @using (Html.BeginForm("AssignTrainee", "Courses", FormMethod.Post))
 {
 
-    <div class="form-group">
-        USERNAME
-        @Html.HiddenFor(m => m.CourseId)
-        @Html.DropDownListFor(m => m.UserId,
-         new SelectList(Model.Users, "Id", "Username"),
-         new { @class = "form-control" }
-         )
-    </div>
+<div class="form-group">
+    USERNAME
+    @Html.ValidationSummary(false, "", new { @class = "bg-danger" })
+
+    @Html.HiddenFor(m => m.CourseId)
+    @Html.DropDownListFor(m => m.UserId,
+     new SelectList(Model.Users, "Id", "Username"),
+     new { @class = "form-control" }
+     )
+</div>
 
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Add to Course</button>

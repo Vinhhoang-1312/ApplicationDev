@@ -53,5 +53,55 @@ namespace StaffTrainee.Controllers
 
             return RedirectToAction("Index");
         }
+
+        //[Authorize(Roles = "Admin")]
+        //public ActionResult Delete(string id)
+        //{
+
+        //    var userInfo = _context.UserInfos
+
+        //        .SingleOrDefault(s => s.UserId == id);
+
+        //    _context.Users.Remove(userInfo);
+        //    _context.SaveChanges();
+
+
+        //    return RedirectToAction("GetStaffs");
+        //}
+
+
+
+
+
+
+        //[HttpGet]
+
+        //public ActionResult Delete(string id)
+        //{
+        //    //var userId = User.Identity.GetUserId();
+
+        //    if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+        //    var userInfo = _context.UserInfos
+        //        //.Where(t => t.UserId.Equals(userId))
+        //        .SingleOrDefault(t => t.UserId.Equals(id));
+
+        //    if (userInfo == null) return HttpNotFound();
+
+        //    _context.UserInfos.Remove(userInfo);
+        //    _context.SaveChanges();
+
+        //    return RedirectToAction("Index");
+        //}
+
+
+
+
+
+
+
+
+
+
     }
 }
