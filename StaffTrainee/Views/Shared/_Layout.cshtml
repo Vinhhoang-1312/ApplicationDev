@@ -35,7 +35,8 @@
                     {
                 <li>@Html.ActionLink("Course Categories", "Index", "Categories")</li>
                 <li>@Html.ActionLink("Courses", "Index", "Courses")</li>
-                <li>@Html.ActionLink("My User Info", "Index", "UserInfos")</li>}
+                <li>@Html.ActionLink("My User Info", "Index", "UserInfos")</li>
+                }
 
 
 
@@ -43,17 +44,17 @@
                     @if (User.IsInRole("Trainer"))
                     {
 
-                <li>@Html.ActionLink("My User Info", "Index", "UserInfos")</li>}
+                <li>@Html.ActionLink("My User Info", "Index", "UserInfos")</li>
+                <li>@Html.ActionLink("My Courses", "MineTrainer", "Courses")</li>
 
-
-
+                    }
                     @if (User.IsInRole("Trainee"))
                     {
 
-                <li>@Html.ActionLink("Courses", "Index", "Courses")</li>
-                <li>@Html.ActionLink("My User Info", "Index", "UserInfos")</li>}
-
-
+                <li>@Html.ActionLink("Available Courses", "Index", "Courses")</li>
+                <li>@Html.ActionLink("My User Info", "Index", "UserInfos")</li>
+                <li>@Html.ActionLink("My Courses", "MineTrainee", "Courses")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

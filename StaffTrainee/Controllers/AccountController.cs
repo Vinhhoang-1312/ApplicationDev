@@ -137,42 +137,117 @@ namespace StaffTrainee.Controllers
                     return View(model);
             }
         }
+
+        /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
         [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult CreateStaff()
         {
             return View();
         }
-        [Authorize(Roles = "Admin")]
+
         [HttpPost]
         public async Task<ActionResult> CreateStaff(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                UserManager.AddToRole(user.Id, "Staff");
-                if (result.Succeeded)
+                if (ModelState.IsValid)
                 {
-                    var userInfo = new UserInfo
+                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                    UserManager.AddToRole(user.Id, "Staff");
+                    if (result.Succeeded)
                     {
-                        FullName = model.FullName,
-                        Phone = model.Phone,
-                        UserId = user.Id
+                        var userInfo = new UserInfo
+                        {
+                            FullName = model.FullName,
+                            Phone = model.Phone,
+                            UserId = user.Id
+                        };
+                        _context.UserInfos.Add(userInfo);
+                        try
+                        {
+                            _context.SaveChanges();
+                        }
+                        catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                        {
+                            ModelState.AddModelError("", "Account alreay exists");
+                            return View(user);
+                        }
 
-                    };
-                    _context.UserInfos.Add(userInfo);
 
 
-                    _context.SaveChanges();
+                        return RedirectToAction("Index", "Home");
+                    }
 
-                    return RedirectToAction("Index", "Home");
+
+                    AddErrors(result);
+
                 }
-                AddErrors(result);
-            }
 
+
+
+
+
+
+            }
             return View(model);
         }
+
+
+        //[HttpPost]
+        //public ActionResult CreateStaff(RegisterViewModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.Phone };
+        //        var result = _userManager.Create(user, model.Password);
+        //        if (result.Succeeded)
+        //        {
+        //            _userManager.AddToRole(user.Id, "Staff");
+        //            _context.SaveChanges();
+        //        }
+
+
+        //        return RedirectToAction("StaffList");
+        //    }
+        //    return View(model);
+
+
+
+
+
+
+
+
+
+        //}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult CreateTrainer()
@@ -210,6 +285,15 @@ namespace StaffTrainee.Controllers
 
             return View(model);
         }
+
+        /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         [Authorize(Roles = "Staff")]
         [HttpGet]

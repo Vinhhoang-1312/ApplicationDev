@@ -5,28 +5,40 @@
 
 <div class="jumbotron">
     <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
 
+    @if (Request.IsAuthenticated)
+    {
+        @*<p>Username: @User.Identity.GetUserName()</p>*@
+    }
     @if (User.IsInRole("Trainee"))
     {
-        <h2>Welcome Trainee</h2>
+        <h2>Welcome @User.Identity.GetUserName()</h2>
+        <h2>We hope you enjoy your time at the FPT Training System</h2>
 
     }
 
     @if (User.IsInRole("Staff"))
     {
-        <h2>Welcome Staff</h2>
-
+        <h2>Welcome Staff : @User.Identity.GetUserName()</h2>
+        <h2>We hope you enjoy your time at the FPT Training System</h2>
     }
     @if (User.IsInRole("Admin"))
     {
-        <h2>Welcome Admin</h2>
-        
+        <h2>Welcome Admin : @User.Identity.GetUserName() </h2>
+
+        @Html.ActionLink(
+          "Show all Staff",
+          "GetStaffs",
+          "Admin",
+          null,
+          new { @class = "btn btn-primary" })
+
+
     }
     @if (User.IsInRole("Trainer"))
     {
-        <h2>Welcome Trainer</h2>
-
+        <h2>Welcome @User.Identity.GetUserName()</h2>
+        <h2>We hope you enjoy your time at the FPT Training System</h2>
     }
 
 
@@ -34,9 +46,6 @@
 
 
 
-    @if (Request.IsAuthenticated)
-    {
-        <p>Username: @User.Identity.GetUserName()</p>
-    }
+
 
 </div>

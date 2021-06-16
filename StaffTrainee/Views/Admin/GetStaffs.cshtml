@@ -1,0 +1,57 @@
+﻿@model IEnumerable<StaffTrainee.Models.ApplicationUser>
+@{
+    ViewBag.Title = "GetStaffs";
+}
+@if (User.IsInRole("Admin"))
+{
+    <h2>Show all Staff</h2>
+    <h2></h2>
+    @Html.ActionLink(
+         "Create new Staff",
+         "CreateStaff",
+         "Account",
+         null,
+         new { @class = "btn btn-default" }
+             )
+
+    <h2></h2>
+
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <ul class="list-group">
+                <li class="list-group-item active">
+                    Staffs List
+                </li>
+
+                @foreach (var staff in Model)
+                {
+
+                    <li class="list-group-item">
+                        @staff.UserName
+                        <div>
+
+                            @Html.ActionLink(
+               "Reset staff Password",
+               "ResetStaffPassword",
+               "Account",
+               new { id = staff.Id },
+               new { @class = "text-info" }
+             )   
+                            
+                            @Html.ActionLink("Delete", // <-- Link text
+                                                                                "Delete", // <-- Action Method Name
+                                                                                "Admin", // <-- Controller Name
+                                                                                new { id = staff.Id }, // <-- Route value
+                                                                                new { @class = "btn btn-danger" })   @*htmlArguments*@
+                                                                                
+
+
+                                                                                              
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+}
