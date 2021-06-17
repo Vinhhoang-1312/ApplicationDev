@@ -4,7 +4,8 @@
 }
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
+    <h1>WELCOME TO FPT.TRAINING SYSTEM</h1>
+    
 
     @if (Request.IsAuthenticated)
     {
@@ -29,6 +30,12 @@
         @Html.ActionLink(
           "Show all Staff",
           "GetStaffs",
+          "Admin",
+          null,
+          new { @class = "btn btn-primary" })
+         @Html.ActionLink(
+          "Show all Trainers",
+          "GetTrainers",
           "Admin",
           null,
           new { @class = "btn btn-primary" })

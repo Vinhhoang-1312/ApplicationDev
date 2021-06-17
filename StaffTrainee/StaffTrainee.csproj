@@ -280,6 +280,8 @@
     <Content Include="Views\Courses\MineTrainee.cshtml" />
     <Content Include="Views\Courses\MineTrainer.cshtml" />
     <Content Include="Views\Admin\GetStaffs.cshtml" />
+    <Content Include="Views\Admin\Exist.cshtml" />
+    <Content Include="Views\Admin\GetTrainers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

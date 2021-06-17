@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using StaffTrainee.Models;
 
+
 namespace StaffTrainee.Controllers
 {
     [Authorize]
@@ -177,31 +178,12 @@ namespace StaffTrainee.Controllers
                             UserId = user.Id
                         };
                         _context.UserInfos.Add(userInfo);
-                        try
-                        {
-                            _context.SaveChanges();
-                        }
-                        catch (System.Data.Entity.Infrastructure.DbUpdateException)
-                        {
-                            ModelState.AddModelError("", "Account alreay exists");
-                            return View(user);
-                        }
-
-
-
+                        _context.SaveChanges();
                         return RedirectToAction("GetStaffs", "Admin");
 
+
                     }
-
-
-                    AddErrors(result);
-
                 }
-
-
-
-
-
 
             }
             return View(model);
@@ -279,9 +261,9 @@ namespace StaffTrainee.Controllers
 
                     _context.SaveChanges();
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("GetTrainers", "Admin");
                 }
-                AddErrors(result);
+
             }
 
             return View(model);
@@ -326,7 +308,7 @@ namespace StaffTrainee.Controllers
 
                     _context.SaveChanges();
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("GetTrainees", "Admin");
                 }
                 AddErrors(result);
             }
@@ -347,6 +329,7 @@ namespace StaffTrainee.Controllers
         // GET: /Account/Register
 
         [AllowAnonymous]
+        [Authorize(Roles = "Admin,Staff")]
         public ActionResult Register()
         {
             return View();
@@ -356,6 +339,7 @@ namespace StaffTrainee.Controllers
         // POST: /Account/Register
 
         [HttpPost]
+        [Authorize(Roles = "Admin,Staff")]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)

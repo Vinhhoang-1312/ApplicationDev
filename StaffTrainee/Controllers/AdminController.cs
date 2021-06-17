@@ -46,10 +46,29 @@ namespace StaffTrainee.Controllers
             return View(staffs);
 
         }
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        public ActionResult GetTrainers()
+        {
+            var users = _context.Users.ToList();
+            var trainers = new List<ApplicationUser>();
+
+            foreach (var user in users)
+            {
+                if (_userManager.GetRoles(user.Id)[0].Equals("Trainer"))
+                {
+                    trainers.Add(user);
+                }
+
+            }
+
+            return View(trainers);
+
+        }
 
         [HttpGet]
         [Authorize(Roles = "Admin")]
-        public ActionResult Delete(string id)
+        public ActionResult DeleteStaffs(string id)
         {
             var AccountInDB = _context.Users.SingleOrDefault(p => p.Id == id);
 
