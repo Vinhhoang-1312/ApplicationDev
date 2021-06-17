@@ -5,7 +5,7 @@
 
 <div class="jumbotron">
     <h1>WELCOME TO FPT.TRAINING SYSTEM</h1>
-    
+
 
     @if (Request.IsAuthenticated)
     {
@@ -22,7 +22,12 @@
     {
         <h2>Welcome Staff : @User.Identity.GetUserName()</h2>
         <h2>We hope you enjoy your time at the FPT Training System</h2>
-    }
+    } @Html.ActionLink(
+        "Show all Trainee",
+        "GetTrainees",
+        "Staff",
+        null,
+        new { @class = "btn btn-primary" })
     @if (User.IsInRole("Admin"))
     {
         <h2>Welcome Admin : @User.Identity.GetUserName() </h2>
@@ -33,12 +38,12 @@
           "Admin",
           null,
           new { @class = "btn btn-primary" })
-         @Html.ActionLink(
-          "Show all Trainers",
-          "GetTrainers",
-          "Admin",
-          null,
-          new { @class = "btn btn-primary" })
+        @Html.ActionLink(
+         "Show all Trainers",
+         "GetTrainers",
+         "Admin",
+         null,
+         new { @class = "btn btn-primary" })
 
 
     }
