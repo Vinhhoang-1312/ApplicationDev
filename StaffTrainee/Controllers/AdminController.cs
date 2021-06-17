@@ -126,17 +126,50 @@ namespace StaffTrainee.Controllers
             AccountInDB.PhoneNumber = user.PhoneNumber;
 
 
-            /*.
-            var userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
-            userId = user.Id;
-            if (userId != null)
+            _context.SaveChanges();
+            return RedirectToAction("GetStaffs", "Admin");
+        }
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public ActionResult EditTrainers(string id)
+        {
+            var AccountInDB = _context.Users.SingleOrDefault(p => p.Id == id);
+            if (AccountInDB == null)
             {
-                UserManager<IdentityUser> userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
-                userManager.RemovePassword(userId);
-                String newPassword = user.PhoneNumber;
-                userManager.AddPassword(userId, newPassword);
+                return HttpNotFound();
             }
-            .*/
+            return View(AccountInDB);
+        }
+
+        //EDIT
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public ActionResult EditTrainers(ApplicationUser user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            var UsernameIsExist = _context.Users.
+                                  Any(p => p.Email.Contains(user.Email));
+
+            if (UsernameIsExist)
+            {
+                ModelState.AddModelError("Email", "Account already existed");
+                return View();
+            }
+
+            var AccountInDB = _context.Users.SingleOrDefault(p => p.Id == user.Id);
+
+            if (AccountInDB == null)
+            {
+                return HttpNotFound();
+            }
+
+            AccountInDB.UserName = user.UserName;
+            AccountInDB.PhoneNumber = user.PhoneNumber;
+
+
             _context.SaveChanges();
             return RedirectToAction("GetStaffs", "Admin");
         }
