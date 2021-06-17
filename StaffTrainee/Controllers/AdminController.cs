@@ -15,7 +15,7 @@ namespace StaffTrainee.Controllers
     {
         private ApplicationDbContext _context;
         private UserManager<ApplicationUser> _userManager;
-        private ApplicationUserManager _userROLEManager;
+
 
         public AdminController()
         {
