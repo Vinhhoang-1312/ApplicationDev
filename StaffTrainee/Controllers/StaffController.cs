@@ -62,7 +62,7 @@ namespace StaffTrainee.Controllers
 
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Staff")]
         public ActionResult EditTrainees(string id)
         {
             var AccountInDB = _context.Users.SingleOrDefault(p => p.Id == id);
@@ -75,7 +75,7 @@ namespace StaffTrainee.Controllers
 
         //EDIT
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Staff")]
         public ActionResult EditTrainees(ApplicationUser user)
         {
             if (!ModelState.IsValid)
@@ -111,7 +111,32 @@ namespace StaffTrainee.Controllers
 
 
 
+        [HttpGet]
+        [Authorize(Roles = "Staff")]
+        public ActionResult ChangePassTrainees(string id)
+        {
+            var AccountInDB = _context.Users.SingleOrDefault(p => p.Id == id);
 
+            if (AccountInDB == null)
+            {
+                return HttpNotFound();
+            }
+
+
+            var userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            userId = AccountInDB.Id;
+            if (userId != null)
+            {
+                //userManager           bằng quản lý người dùng mới,              mang dữ liệu mới 
+                UserManager<IdentityUser> userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
+                userManager.RemovePassword(userId);
+                String newPassword = "Password1@";
+                userManager.AddPassword(userId, newPassword);
+            }
+            _context.SaveChanges();
+            return RedirectToAction("GetTrainees", "Staff");
+        }
+        //Khai báo biến var userId thuộc Curent.User.Identity và truy cập vào trường Id thông qua GetUserId   
 
 
     }

@@ -38,13 +38,13 @@
                     <td></td>
 
 
-                    @if (User.IsInRole("Admin"))
+                    @if (User.IsInRole("Staff"))
                     {
                         <td>
 
                             @Html.ActionLink("DeleteTrainees", // <-- Link text
                                                                           "DeleteTrainees", // <-- Action Method Name
-                                                                          "Admin", // <-- Controller Name
+                                                                          "Staff", // <-- Controller Name
                                                                           new { id = trainee.Id }, // <-- Route value
                                                                           new { @class = "btn btn-danger" })   @*htmlArguments*@
 
@@ -52,7 +52,7 @@
                                                                         @Html.ActionLink(
                                                              "Reset Trainees Password",
                                                              "ChangePassTrainees",
-                                                             "Admin",
+                                                             "Staff",
                                                              new { id = trainee.Id },
                                                              new { @class = "btn btn-success" }
                                                            )
@@ -63,7 +63,7 @@
 
                                                                         @Html.ActionLink("EditTrainees", // <-- Link text
             "EditTrainees", // <-- Action Method Name
-            "Admin", // <-- Controller Name
+            "Staff", // <-- Controller Name
             new { id = trainee.Id }, // <-- Route value
             new { @class = "btn btn-info" })   @*htmlArguments*@
 
