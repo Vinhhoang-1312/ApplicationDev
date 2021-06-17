@@ -15,9 +15,11 @@ namespace StaffTrainee.Controllers
     {
         private ApplicationDbContext _context;
         private UserManager<ApplicationUser> _userManager;
+        private ApplicationUserManager _userROLEManager;
 
         public AdminController()
         {
+
             _context = new ApplicationDbContext();
             _userManager = new UserManager<ApplicationUser>(
               new UserStore<ApplicationUser>(new ApplicationDbContext()));
@@ -105,11 +107,11 @@ namespace StaffTrainee.Controllers
                 return View();
             }
             var UsernameIsExist = _context.Users.
-                                  Any(p => p.UserName.Contains(user.UserName));
+                                  Any(p => p.Email.Contains(user.Email));
 
             if (UsernameIsExist)
             {
-                ModelState.AddModelError("UserName", "Username already existed");
+                ModelState.AddModelError("Email", "Account already existed");
                 return View();
             }
 
@@ -121,6 +123,7 @@ namespace StaffTrainee.Controllers
             }
 
             AccountInDB.UserName = user.UserName;
+            AccountInDB.PhoneNumber = user.PhoneNumber;
 
 
             /*.
@@ -135,7 +138,7 @@ namespace StaffTrainee.Controllers
             }
             .*/
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("GetStaffs", "Admin");
         }
 
     }
