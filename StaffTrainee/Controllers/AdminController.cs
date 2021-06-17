@@ -171,7 +171,7 @@ namespace StaffTrainee.Controllers
 
 
             _context.SaveChanges();
-            return RedirectToAction("GetStaffs", "Admin");
+            return RedirectToAction("GetTrainers", "Admin");
         }
 
     }
