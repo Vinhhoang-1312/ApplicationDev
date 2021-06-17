@@ -189,7 +189,8 @@ namespace StaffTrainee.Controllers
 
 
 
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("GetStaffs", "Admin");
+
                     }
 
 

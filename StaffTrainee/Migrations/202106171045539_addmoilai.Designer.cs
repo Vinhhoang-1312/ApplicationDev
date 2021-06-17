@@ -7,13 +7,13 @@ namespace StaffTrainee.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class addnumberforPhoneatUserInfortable : IMigrationMetadata
+    public sealed partial class addmoilai : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addnumberforPhoneatUserInfortable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addmoilai));
         
         string IMigrationMetadata.Id
         {
-            get { return "202106130923338_addnumberforPhoneatUserInfortable"; }
+            get { return "202106171045539_addmoilai"; }
         }
         
         string IMigrationMetadata.Source

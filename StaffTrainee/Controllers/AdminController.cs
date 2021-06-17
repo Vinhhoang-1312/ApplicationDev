@@ -40,15 +40,13 @@ namespace StaffTrainee.Controllers
                 {
                     staffs.Add(user);
                 }
+                
             }
 
             return View(staffs);
+
         }
 
-
-
-
-        //DELETE ACCOUNT
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(string id)
@@ -62,8 +60,56 @@ namespace StaffTrainee.Controllers
 
             _context.Users.Remove(AccountInDB);
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("GetStaffs");
         }
+
+
+        ////DELETE ACCOUNT
+        //[HttpGet]
+        //[Authorize(Roles = "Admin")]
+        //public ActionResult Delete(string id)
+        //{
+        //    var AccountInDB = _context.Users.Where(p => p.Id.Equals(id)).ToList();
+        //    UserInfo userInfo = _context.UserInfos.Find(id);
+        //    if (AccountInDB == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+
+        //    //Quarto quarto = db.Quarto.Find(id);
+
+        //    _context.Users.Remove(userInfo);
+        //    _context.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+
+
+
+        //for (int i = 0; i < restaurant.Types.Count; i++)
+        //{
+        //    var type = restaurant.Types[i];
+        //    db.DeleteObject(type);
+        //    restaurant.Types.Remove(type);
+        //}
+        //db.SaveChanges();
+
+        //db.DeleteObject(restaurant);
+        //db.SaveChanges();
+
+
+
+
+
+        //{
+        //    List<Reserva> Reservas = db.Reserva.Where(r => r.ID_Quarto == id).ToList();
+        //    db.Reserva.RemoveRange(Reservas);
+
+        //    Quarto quarto = db.Quarto.Find(id);
+        //    db.Quarto.Remove(quarto);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+
 
 
 

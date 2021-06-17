@@ -177,61 +177,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202106090745490_InitialCreate.cs" />
-    <Compile Include="Migrations\202106090745490_InitialCreate.Designer.cs">
-      <DependentUpon>202106090745490_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106091405457_categories.cs" />
-    <Compile Include="Migrations\202106091405457_categories.Designer.cs">
-      <DependentUpon>202106091405457_categories.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106091437483_createcategoriestable.cs" />
-    <Compile Include="Migrations\202106091437483_createcategoriestable.Designer.cs">
-      <DependentUpon>202106091437483_createcategoriestable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106091528002_uniquecategories.cs" />
-    <Compile Include="Migrations\202106091528002_uniquecategories.Designer.cs">
-      <DependentUpon>202106091528002_uniquecategories.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106110415515_updatecoursetbale.cs" />
-    <Compile Include="Migrations\202106110415515_updatecoursetbale.Designer.cs">
-      <DependentUpon>202106110415515_updatecoursetbale.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106111118196_updatelainameindexchobangcategory.cs" />
-    <Compile Include="Migrations\202106111118196_updatelainameindexchobangcategory.Designer.cs">
-      <DependentUpon>202106111118196_updatelainameindexchobangcategory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106111120420_addnameindexmodelcategorylaiviloi.cs" />
-    <Compile Include="Migrations\202106111120420_addnameindexmodelcategorylaiviloi.Designer.cs">
-      <DependentUpon>202106111120420_addnameindexmodelcategorylaiviloi.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106120326587_xoa[key]categorymodel.cs" />
-    <Compile Include="Migrations\202106120326587_xoa[key]categorymodel.Designer.cs">
-      <DependentUpon>202106120326587_xoa[key]categorymodel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106130831080_createUserInfortable.cs" />
-    <Compile Include="Migrations\202106130831080_createUserInfortable.Designer.cs">
-      <DependentUpon>202106130831080_createUserInfortable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106130923338_addnumberforPhoneatUserInfortable.cs" />
-    <Compile Include="Migrations\202106130923338_addnumberforPhoneatUserInfortable.Designer.cs">
-      <DependentUpon>202106130923338_addnumberforPhoneatUserInfortable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106141401107_deleteunique.cs" />
-    <Compile Include="Migrations\202106141401107_deleteunique.Designer.cs">
-      <DependentUpon>202106141401107_deleteunique.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106141416249_addenrollmentTraineetable.cs" />
-    <Compile Include="Migrations\202106141416249_addenrollmentTraineetable.Designer.cs">
-      <DependentUpon>202106141416249_addenrollmentTraineetable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106141421376_updatelai2bangenrollment.cs" />
-    <Compile Include="Migrations\202106141421376_updatelai2bangenrollment.Designer.cs">
-      <DependentUpon>202106141421376_updatelai2bangenrollment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106151116588_addviewmodelassigntrainee.cs" />
-    <Compile Include="Migrations\202106151116588_addviewmodelassigntrainee.Designer.cs">
-      <DependentUpon>202106151116588_addviewmodelassigntrainee.cs</DependentUpon>
+    <Compile Include="Migrations\202106171045539_addmoilai.cs" />
+    <Compile Include="Migrations\202106171045539_addmoilai.Designer.cs">
+      <DependentUpon>202106171045539_addmoilai.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -342,47 +290,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202106090745490_InitialCreate.resx">
-      <DependentUpon>202106090745490_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106091405457_categories.resx">
-      <DependentUpon>202106091405457_categories.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106091437483_createcategoriestable.resx">
-      <DependentUpon>202106091437483_createcategoriestable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106091528002_uniquecategories.resx">
-      <DependentUpon>202106091528002_uniquecategories.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106110415515_updatecoursetbale.resx">
-      <DependentUpon>202106110415515_updatecoursetbale.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106111118196_updatelainameindexchobangcategory.resx">
-      <DependentUpon>202106111118196_updatelainameindexchobangcategory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106111120420_addnameindexmodelcategorylaiviloi.resx">
-      <DependentUpon>202106111120420_addnameindexmodelcategorylaiviloi.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106120326587_xoa[key]categorymodel.resx">
-      <DependentUpon>202106120326587_xoa[key]categorymodel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106130831080_createUserInfortable.resx">
-      <DependentUpon>202106130831080_createUserInfortable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106130923338_addnumberforPhoneatUserInfortable.resx">
-      <DependentUpon>202106130923338_addnumberforPhoneatUserInfortable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106141401107_deleteunique.resx">
-      <DependentUpon>202106141401107_deleteunique.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106141416249_addenrollmentTraineetable.resx">
-      <DependentUpon>202106141416249_addenrollmentTraineetable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106141421376_updatelai2bangenrollment.resx">
-      <DependentUpon>202106141421376_updatelai2bangenrollment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106151116588_addviewmodelassigntrainee.resx">
-      <DependentUpon>202106151116588_addviewmodelassigntrainee.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106171045539_addmoilai.resx">
+      <DependentUpon>202106171045539_addmoilai.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

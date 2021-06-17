@@ -10,7 +10,6 @@ namespace StaffTrainee.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "StaffTrainee.Models.ApplicationDbContext";
         }
 
         protected override void Seed(StaffTrainee.Models.ApplicationDbContext context)
