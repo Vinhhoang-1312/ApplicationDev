@@ -181,6 +181,14 @@
     <Compile Include="Migrations\202106171045539_addmoilai.Designer.cs">
       <DependentUpon>202106171045539_addmoilai.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106171124105_xoathuforeignkey.cs" />
+    <Compile Include="Migrations\202106171124105_xoathuforeignkey.Designer.cs">
+      <DependentUpon>202106171124105_xoathuforeignkey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106171154265_thuthemdong20bangUserInfo.cs" />
+    <Compile Include="Migrations\202106171154265_thuthemdong20bangUserInfo.Designer.cs">
+      <DependentUpon>202106171154265_thuthemdong20bangUserInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -292,6 +300,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202106171045539_addmoilai.resx">
       <DependentUpon>202106171045539_addmoilai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106171124105_xoathuforeignkey.resx">
+      <DependentUpon>202106171124105_xoathuforeignkey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106171154265_thuthemdong20bangUserInfo.resx">
+      <DependentUpon>202106171154265_thuthemdong20bangUserInfo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

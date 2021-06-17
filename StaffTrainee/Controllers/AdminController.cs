@@ -40,7 +40,7 @@ namespace StaffTrainee.Controllers
                 {
                     staffs.Add(user);
                 }
-                
+
             }
 
             return View(staffs);
@@ -60,9 +60,13 @@ namespace StaffTrainee.Controllers
 
             _context.Users.Remove(AccountInDB);
             _context.SaveChanges();
-            return RedirectToAction("GetStaffs");
+            return RedirectToAction("GetStaffs", "Admin");
         }
+        //            var userinfoindb = _userManager.user.Where(a => a.EngineId == id).ToList();
 
+        //foreach (var vp in vps)
+        //    db.VehicleProperties.Remove(vp);
+        //db.SaveChanges();
 
         ////DELETE ACCOUNT
         //[HttpGet]

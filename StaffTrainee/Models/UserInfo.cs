@@ -9,14 +9,15 @@ namespace StaffTrainee.Models
 {
     public class UserInfo
     {
-        [Key]
+
         public int UserInfoId { get; set; }
 
-        [ForeignKey("User")]
 
+        [Required]
 
 
         public string UserId { get; set; }
+        public IEnumerable<ApplicationUser> Users { get; set; }
         public ApplicationUser User { get; set; }
         [Required]
         public string FullName { get; set; }

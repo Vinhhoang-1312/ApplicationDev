@@ -53,6 +53,23 @@ namespace StaffTrainee.Controllers
 
             return RedirectToAction("Index");
         }
+
+
+        [HttpGet]
+        [Authorize(Roles = "Staff")]
+        public ActionResult Delete(int id)
+        {
+            var userinfo = _context.UserInfos.SingleOrDefault(trdb => trdb.UserInfoId == id);
+            if (userinfo == null)
+            {
+                return HttpNotFound();
+            }
+
+            _context.UserInfos.Remove(userinfo);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         //[HttpGet]
         //public ActionResult Delete(int? id)
         //{
