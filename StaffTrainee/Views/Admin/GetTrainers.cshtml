@@ -50,6 +50,14 @@
                                                                     new { id = trainer.Id }, // <-- Route value
                                                                     new { @class = "btn btn-danger" })   @*htmlArguments*@
 
+                                                                    @Html.ActionLink(
+                                                         "Reset Staff Password",
+                                                         "ChangePassTrainers",
+                                                         "Admin",
+                                                         new { id = trainer.Id },
+                                                         new { @class = "btn btn-success" }
+                                                       )
+
                                                                     @Html.ActionLink("EditTrainers", // <-- Link text
                                                                                                                       "EditTrainers", // <-- Action Method Name
                                                                                                                       "Admin", // <-- Controller Name

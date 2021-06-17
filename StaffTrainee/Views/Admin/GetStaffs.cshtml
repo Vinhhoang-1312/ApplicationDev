@@ -40,25 +40,38 @@
 
                 @if (User.IsInRole("Admin"))
                 {
-                    <td>
+            <td>
 
-                        @Html.ActionLink("DeleteStaffs", // <-- Link text
-                                                                      "DeleteStaffs", // <-- Action Method Name
-                                                                      "Admin", // <-- Controller Name
-                                                                      new { id = staff.Id }, // <-- Route value
-                                                                      new { @class = "btn btn-danger" })   @*htmlArguments*@
-
-                                                                            @Html.ActionLink("EditStaffs", // <-- Link text
-                "EditStaffs", // <-- Action Method Name
-                "Admin", // <-- Controller Name
-                new { id = staff.Id }, // <-- Route value
-                new { @class = "btn btn-info" })   @*htmlArguments*@
+                @Html.ActionLink("DeleteStaffs", // <-- Link text
+                                                              "DeleteStaffs", // <-- Action Method Name
+                                                              "Admin", // <-- Controller Name
+                                                              new { id = staff.Id }, // <-- Route value
+                                                              new { @class = "btn btn-danger" })   @*htmlArguments*@
 
 
+                                                            @Html.ActionLink(
+                                                 "Reset Staff Password",
+                                                 "ChangePassStaffs",
+                                                 "Admin",
+                                                 new { id = staff.Id },
+                                                 new { @class = "btn btn-success" }
+                                               )
 
 
-                                                                        
-                                                                     </td>
+
+
+
+                                                            @Html.ActionLink("EditStaffs", // <-- Link text
+"EditStaffs", // <-- Action Method Name
+"Admin", // <-- Controller Name
+new { id = staff.Id }, // <-- Route value
+new { @class = "btn btn-info" })   @*htmlArguments*@
+
+
+
+
+
+            </td>
 
 
                 }

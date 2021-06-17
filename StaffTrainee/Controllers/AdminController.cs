@@ -130,8 +130,32 @@ namespace StaffTrainee.Controllers
             return RedirectToAction("GetStaffs", "Admin");
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public ActionResult ChangePassStaffs(string id)
+        {
+            var AccountInDB = _context.Users.SingleOrDefault(p => p.Id == id);
+
+            if (AccountInDB == null)
+            {
+                return HttpNotFound();
+            }
 
 
+            var userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            userId = AccountInDB.Id;
+            if (userId != null)
+            {
+                //userManager           bằng quản lý người dùng mới,              mang dữ liệu mới 
+                UserManager<IdentityUser> userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
+                userManager.RemovePassword(userId);
+                String newPassword = "Password1@";
+                userManager.AddPassword(userId, newPassword);
+            }
+            _context.SaveChanges();
+            return RedirectToAction("GetStaffs", "Admin");
+        }
+        //Khai báo biến var userId thuộc Curent.User.Identity và truy cập vào trường Id thông qua GetUserId   
 
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -185,7 +209,32 @@ namespace StaffTrainee.Controllers
             return RedirectToAction("GetTrainers", "Admin");
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public ActionResult ChangePassTrainers(string id)
+        {
+            var AccountInDB = _context.Users.SingleOrDefault(p => p.Id == id);
 
+            if (AccountInDB == null)
+            {
+                return HttpNotFound();
+            }
+
+
+            var userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            userId = AccountInDB.Id;
+            if (userId != null)
+            {
+                //userManager           bằng quản lý người dùng mới,              mang dữ liệu mới 
+                UserManager<IdentityUser> userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
+                userManager.RemovePassword(userId);
+                String newPassword = "Password1@";
+                userManager.AddPassword(userId, newPassword);
+            }
+            _context.SaveChanges();
+            return RedirectToAction("GetTrainers", "Admin");
+        }
+        //Khai báo biến var userId thuộc Curent.User.Identity và truy cập vào trường Id thông qua GetUserId   
 
 
 
