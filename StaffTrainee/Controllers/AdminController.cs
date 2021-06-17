@@ -81,77 +81,62 @@ namespace StaffTrainee.Controllers
             _context.SaveChanges();
             return RedirectToAction("GetStaffs", "Admin");
         }
-        //            var userinfoindb = _userManager.user.Where(a => a.EngineId == id).ToList();
-
-        //foreach (var vp in vps)
-        //    db.VehicleProperties.Remove(vp);
-        //db.SaveChanges();
-
-        ////DELETE ACCOUNT
-        //[HttpGet]
-        //[Authorize(Roles = "Admin")]
-        //public ActionResult Delete(string id)
-        //{
-        //    var AccountInDB = _context.Users.Where(p => p.Id.Equals(id)).ToList();
-        //    UserInfo userInfo = _context.UserInfos.Find(id);
-        //    if (AccountInDB == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-
-        //    //Quarto quarto = db.Quarto.Find(id);
-
-        //    _context.Users.Remove(userInfo);
-        //    _context.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
 
 
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public ActionResult EditStaffs(string id)
+        {
+            var AccountInDB = _context.Users.SingleOrDefault(p => p.Id == id);
+            if (AccountInDB == null)
+            {
+                return HttpNotFound();
+            }
+            return View(AccountInDB);
+        }
 
-        //for (int i = 0; i < restaurant.Types.Count; i++)
-        //{
-        //    var type = restaurant.Types[i];
-        //    db.DeleteObject(type);
-        //    restaurant.Types.Remove(type);
-        //}
-        //db.SaveChanges();
+        //EDIT
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public ActionResult EditStaffs(ApplicationUser user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            var UsernameIsExist = _context.Users.
+                                  Any(p => p.UserName.Contains(user.UserName));
 
-        //db.DeleteObject(restaurant);
-        //db.SaveChanges();
+            if (UsernameIsExist)
+            {
+                ModelState.AddModelError("UserName", "Username already existed");
+                return View();
+            }
+
+            var AccountInDB = _context.Users.SingleOrDefault(p => p.Id == user.Id);
+
+            if (AccountInDB == null)
+            {
+                return HttpNotFound();
+            }
+
+            AccountInDB.UserName = user.UserName;
 
 
-
-
-
-        //{
-        //    List<Reserva> Reservas = db.Reserva.Where(r => r.ID_Quarto == id).ToList();
-        //    db.Reserva.RemoveRange(Reservas);
-
-        //    Quarto quarto = db.Quarto.Find(id);
-        //    db.Quarto.Remove(quarto);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
-
-
-
-
-        ////        [HttpGet]
-        ////        public ActionResult GetTrainer()
-        ////        {
-        ////            var users = _context.Users.ToList();
-        ////            var managers = new List<ApplicationUser>();
-
-        ////            foreach (var user in users)
-        ////            {
-        ////                if (_userManager.GetRoles(user.Id)[0].Equals("Staff""Trainer"))
-        ////                {
-        ////                    managers.Add(user);
-        ////                }
-        ////            }
-
-        ////            return View(managers);
-        ////        }
+            /*.
+            var userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            userId = user.Id;
+            if (userId != null)
+            {
+                UserManager<IdentityUser> userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
+                userManager.RemovePassword(userId);
+                String newPassword = user.PhoneNumber;
+                userManager.AddPassword(userId, newPassword);
+            }
+            .*/
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
     }
 }

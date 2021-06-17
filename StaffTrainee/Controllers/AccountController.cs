@@ -246,6 +246,17 @@ namespace StaffTrainee.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+
+
+                var UsernameIsExist = _context.Users.
+                               Any(p => p.Email.Contains(user.Email));
+
+                if (UsernameIsExist)
+                {
+                    ModelState.AddModelError("Email", "Account already existed");
+                    return View();
+                }
+
                 UserManager.AddToRole(user.Id, "Trainer");
                 if (result.Succeeded)
                 {
@@ -256,6 +267,7 @@ namespace StaffTrainee.Controllers
                         UserId = user.Id
 
                     };
+
                     _context.UserInfos.Add(userInfo);
 
 
