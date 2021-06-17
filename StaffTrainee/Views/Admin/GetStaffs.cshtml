@@ -7,54 +7,68 @@
     <h2>Show all Staff</h2>
     <h2></h2>
     @Html.ActionLink(
-         "Create new Staff",
-         "CreateStaff",
-         "Account",
-         null,
-         new { @class = "btn btn-default" }
-             )
+             "Create new Staff",
+             "CreateStaff",
+             "Account",
+             null,
+             new { @class = "btn btn-default" }
+                 )
 
     <h2></h2>
 
 
 
-    <div class="row">
-        <div class="col-md-4">
-            <ul class="list-group">
-                <li class="list-group-item active">
-                    Staffs List
-                </li>
 
-                @foreach (var staff in Model)
+
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">StaffList</th>
+            <th scope="col"></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var staff in Model)
+        {
+            <tr>
+                <th scope="row"></th>
+                <td>@staff.UserName</td>
+                <td></td>
+
+
+                @if (User.IsInRole("Admin"))
                 {
-
-                    <li class="list-group-item">
-                        @staff.UserName
-
-
-
+                    <td>
 
                         @Html.ActionLink("DeleteStaffs", // <-- Link text
-                                                                            "DeleteStaffs", // <-- Action Method Name
-                                                                            "Admin", // <-- Controller Name
-                                                                            new { id = staff.Id }, // <-- Route value
-                                                                            new { @class = "btn btn-danger" })   @*htmlArguments*@
+                                                                      "DeleteStaffs", // <-- Action Method Name
+                                                                      "Admin", // <-- Controller Name
+                                                                      new { id = staff.Id }, // <-- Route value
+                                                                      new { @class = "btn btn-danger" })   @*htmlArguments*@
 
-                          @Html.ActionLink("EditStaffs", // <-- Link text
-                                                                            "EditStaffs", // <-- Action Method Name
-                                                                            "Admin", // <-- Controller Name
-                                                                            new { id = staff.Id }, // <-- Route value
-                                                                            new { @class = "btn btn-info" })   @*htmlArguments*@
-
-                        
-                       
+                                                                            @Html.ActionLink("EditStaffs", // <-- Link text
+                "EditStaffs", // <-- Action Method Name
+                "Admin", // <-- Controller Name
+                new { id = staff.Id }, // <-- Route value
+                new { @class = "btn btn-info" })   @*htmlArguments*@
 
 
 
 
-                                                                        </li>
-                                                                    }
-            </ul>
-        </div>
-    </div>
+                                                                        
+                                                                    </td>
+
+
+                }
+
+            </tr>
+
+
+
+
+        }
+    </tbody>
+</table>
 }
