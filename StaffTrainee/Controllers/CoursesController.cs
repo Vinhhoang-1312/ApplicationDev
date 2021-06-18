@@ -224,12 +224,15 @@ namespace StaffTrainee.Controllers
 
             if (usersInCourse == null)
             {
+
+
                 viewmodel.CourseId = id;
                 viewmodel.Users = users;
 
 
                 return View(viewmodel);
             }
+
 
             var usersWithUserRole = new List<ApplicationUser>();
 
@@ -241,6 +244,9 @@ namespace StaffTrainee.Controllers
                 {
                     usersWithUserRole.Add(trainee);
                 }
+
+
+
             }
 
             var viewModel = new EnrollmentTraineeViewModel
@@ -256,6 +262,8 @@ namespace StaffTrainee.Controllers
         [HttpPost]
         public ActionResult AssignTrainee(EnrollmentTrainee model)
         {
+
+
             var enrollmentTrainee = new EnrollmentTrainee
             {
                 CourseId = model.CourseId,
@@ -263,6 +271,8 @@ namespace StaffTrainee.Controllers
             };
 
             _context.EnrollmentTrainees.Add(enrollmentTrainee);
+
+
             _context.SaveChanges();
 
             return RedirectToAction("IndexAssignTrainee");
@@ -380,6 +390,11 @@ namespace StaffTrainee.Controllers
         [HttpPost]
         public ActionResult AssignTrainer(EnrollmentTrainer model)
         {
+            //if (!ModelState.IsValid)
+            //{
+            //    ModelState.AddModelError("", "Please Enter User");
+            //    return View(model);
+            //}
             var enrollmentTrainer = new EnrollmentTrainer
             {
                 CourseId = model.CourseId,

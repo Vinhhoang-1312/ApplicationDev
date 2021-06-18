@@ -45,7 +45,11 @@ namespace StaffTrainee.Controllers
             {
                 return View(model);
             }
-
+            if (_context.Categories.Any(c => c.Name.Contains(model.Name)))
+            {
+                ModelState.AddModelError("", "Category Name alreay exists");
+                return View(model);
+            }
             var category = new Category
             {
                 Name = model.Name,
@@ -56,12 +60,6 @@ namespace StaffTrainee.Controllers
 
             _context.SaveChanges();
 
-            //}
-            //catch (System.Data.Entity.Infrastructure.DbUpdateException)
-            //{
-            //    ModelState.AddModelError("", "Category Name alreay exists");
-            //    return View(model);
-            //}
             return RedirectToAction("Index");
         }
 
