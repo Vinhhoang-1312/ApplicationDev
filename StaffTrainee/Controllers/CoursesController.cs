@@ -103,10 +103,7 @@ namespace StaffTrainee.Controllers
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            //var userId = User.Identity.GetUserId();
-
             var courseInDb = _context.Courses
-                //.Where(t => t.UserId.Equals(userId))
                 .SingleOrDefault(t => t.Id == id);
 
             if (courseInDb == null) return HttpNotFound();
@@ -154,12 +151,10 @@ namespace StaffTrainee.Controllers
         [Authorize(Roles = "Staff")]
         public ActionResult Delete(int? id)
         {
-            //var userId = User.Identity.GetUserId();
 
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             var courseInDb = _context.Courses
-                //.Where(t => t.UserId.Equals(userId))
                 .SingleOrDefault(t => t.Id == id);
 
             if (courseInDb == null) return HttpNotFound();
@@ -244,9 +239,6 @@ namespace StaffTrainee.Controllers
                 {
                     usersWithUserRole.Add(trainee);
                 }
-
-
-
             }
 
             var viewModel = new EnrollmentTraineeViewModel
@@ -262,20 +254,40 @@ namespace StaffTrainee.Controllers
         [HttpPost]
         public ActionResult AssignTrainee(EnrollmentTrainee model)
         {
-
-
             var enrollmentTrainee = new EnrollmentTrainee
             {
                 CourseId = model.CourseId,
                 UserId = model.UserId
             };
+            //    if (!ModelState.IsValid)
+            //    {
+            //        EnrollmentTrainee viewmodel = new EnrollmentTrainee()
+            //        {
+            //            CourseId = model.CourseId,
+            //            UserId = model.UserId
+            //        };
+            //        return View(viewmodel);
+            //    }
+            try
+            {
+                if (ModelState.IsValid)
+                {
 
-            _context.EnrollmentTrainees.Add(enrollmentTrainee);
+                    _context.EnrollmentTrainees.Add(enrollmentTrainee);
+                    _context.SaveChanges();
 
+                    return RedirectToAction("IndexAssignTrainee");
+                }
+            }
+            catch
 
-            _context.SaveChanges();
+            {
+
+                return View("~/Views/Error/Error404.cshtml");
+            }
 
             return RedirectToAction("IndexAssignTrainee");
+
         }
         [Authorize(Roles = "Staff")]
 

@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Error404";
+}
+<h2>Error404 : Not Found</h2>
+<h2>Please check if the information or is missing or incorrect</h2>
+<h2>This could be that you’ve entered the wrong web address</h2>
+
+@Html.ActionLink(
+         "Back To HOME",
+         "Index",
+         "Home",
+         null,
+         new { @class = "btn btn-primary" })
