@@ -1,0 +1,20 @@
+﻿@model IEnumerable<StaffTrainee.Models.Course>
+@{
+    ViewBag.Title = "Mine";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>My Courses</h2>
+        <ul class="list-group">
+            <li class="list-group-item active">
+                My Courses
+                <span class="badge">@Model.Count()</span>
+            </li>
+            @foreach (var Course in Model)
+            {
+                <li class="list-group-item">@Course.Name</li>
+            }
+        </ul>
+    </div>
+</div>

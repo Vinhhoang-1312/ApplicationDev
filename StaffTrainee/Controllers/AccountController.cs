@@ -203,7 +203,7 @@ namespace StaffTrainee.Controllers
 
 
         //[HttpPost]
-        //public ActionResult CreateStaff(RegisterViewModel model)
+        //public ActionResult CreateStaff(isisterViewModel model)
         //{
         //    if (ModelState.IsValid)
         //    {
@@ -323,13 +323,6 @@ namespace StaffTrainee.Controllers
                     return View();
                 }
                 var result = await UserManager.CreateAsync(user, model.Password);
-
-
-
-
-
-
-
                 if (result.Succeeded)
                 {
                     UserManager.AddToRole(user.Id, "Trainee");
@@ -356,21 +349,11 @@ namespace StaffTrainee.Controllers
 
             return View(model);
         }
-
-
-
-
-
-
-
-
-
-
         //
         // GET: /Account/Register
 
         [AllowAnonymous]
-        [Authorize(Roles = "Admin,Staff")]
+
         public ActionResult Register()
         {
             return View();
@@ -380,7 +363,7 @@ namespace StaffTrainee.Controllers
         // POST: /Account/Register
 
         [HttpPost]
-        [Authorize(Roles = "Admin,Staff")]
+
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)

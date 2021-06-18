@@ -190,6 +190,10 @@
     <Compile Include="Migrations\202106171154265_thuthemdong20bangUserInfo.Designer.cs">
       <DependentUpon>202106171154265_thuthemdong20bangUserInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106180432337_addtestdepoy.cs" />
+    <Compile Include="Migrations\202106180432337_addtestdepoy.Designer.cs">
+      <DependentUpon>202106180432337_addtestdepoy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -313,6 +317,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106171154265_thuthemdong20bangUserInfo.resx">
       <DependentUpon>202106171154265_thuthemdong20bangUserInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106180432337_addtestdepoy.resx">
+      <DependentUpon>202106180432337_addtestdepoy.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

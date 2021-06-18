@@ -1,0 +1,87 @@
+﻿@model IEnumerable<StaffTrainee.Models.ApplicationUser>
+@{
+    ViewBag.Title = "GetTrainees";
+}
+@if (User.IsInRole("Staff"))
+{
+    <h2>Show all Trainees</h2>
+    <h2></h2>
+    @Html.ActionLink(
+             "Create new Trainee",
+             "CreateTrainee",
+             "Account",
+             null,
+             new { @class = "btn btn-default" }
+                 )
+
+    <h2></h2>
+
+
+
+
+
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">TraineeList</th>
+                <th scope="col"></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var trainee in Model)
+            {
+                <tr>
+                    <th scope="row"></th>
+                    <td>@trainee.UserName</td>
+                    <td></td>
+
+
+                    @if (User.IsInRole("Staff"))
+                    {
+                        <td>
+
+                            @Html.ActionLink("DeleteTrainees", // <-- Link text
+                                                                          "DeleteTrainees", // <-- Action Method Name
+                                                                          "Staff", // <-- Controller Name
+                                                                          new { id = trainee.Id }, // <-- Route value
+                                                                          new { @class = "btn btn-danger" })   @*htmlArguments*@
+
+
+                                                                        @Html.ActionLink(
+                                                             "Reset Trainees Password",
+                                                             "ChangePassTrainees",
+                                                             "Staff",
+                                                             new { id = trainee.Id },
+                                                             new { @class = "btn btn-success" }
+                                                           )
+
+
+
+
+
+                                                                        @Html.ActionLink("EditTrainees", // <-- Link text
+            "EditTrainees", // <-- Action Method Name
+            "Staff", // <-- Controller Name
+            new { id = trainee.Id }, // <-- Route value
+            new { @class = "btn btn-info" })   @*htmlArguments*@
+
+
+
+
+
+        </td>
+
+
+    }
+
+                </tr>
+
+
+
+
+            }
+        </tbody>
+    </table>
+}

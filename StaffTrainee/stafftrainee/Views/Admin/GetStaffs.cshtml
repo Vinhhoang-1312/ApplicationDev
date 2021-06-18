@@ -1,0 +1,87 @@
+﻿@model IEnumerable<StaffTrainee.Models.ApplicationUser>
+@{
+    ViewBag.Title = "GetStaffs";
+}
+@if (User.IsInRole("Admin"))
+{
+    <h2>Show all Staff</h2>
+    <h2></h2>
+    @Html.ActionLink(
+             "Create new Staff",
+             "CreateStaff",
+             "Account",
+             null,
+             new { @class = "btn btn-default" }
+                 )
+
+    <h2></h2>
+
+
+
+
+
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">StaffList</th>
+            <th scope="col"></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var staff in Model)
+        {
+            <tr>
+                <th scope="row"></th>
+                <td>@staff.UserName</td>
+                <td></td>
+
+
+                @if (User.IsInRole("Admin"))
+                {
+            <td>
+
+                @Html.ActionLink("DeleteStaffs", // <-- Link text
+                                                              "DeleteStaffs", // <-- Action Method Name
+                                                              "Admin", // <-- Controller Name
+                                                              new { id = staff.Id }, // <-- Route value
+                                                              new { @class = "btn btn-danger" })   @*htmlArguments*@
+
+
+                                                            @Html.ActionLink(
+                                                 "Reset Staff Password",
+                                                 "ChangePassStaffs",
+                                                 "Admin",
+                                                 new { id = staff.Id },
+                                                 new { @class = "btn btn-success" }
+                                               )
+
+
+
+
+
+                                                            @Html.ActionLink("EditStaffs", // <-- Link text
+"EditStaffs", // <-- Action Method Name
+"Admin", // <-- Controller Name
+new { id = staff.Id }, // <-- Route value
+new { @class = "btn btn-info" })   @*htmlArguments*@
+
+
+
+
+
+            </td>
+
+
+                }
+
+            </tr>
+
+
+
+
+        }
+    </tbody>
+</table>
+}
