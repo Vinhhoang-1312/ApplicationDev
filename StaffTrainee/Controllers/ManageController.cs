@@ -19,7 +19,10 @@ namespace StaffTrainee.Controllers
         public ManageController()
         {
         }
-
+        public ActionResult Copyright()
+        {
+            return View();
+        }
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;

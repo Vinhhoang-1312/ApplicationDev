@@ -64,8 +64,18 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year -  HoangDung's ASP.NET  </p>
+           
+            <p>
+                @Html.ActionLink(
+                     "HoangDung's ASP.NET ",
+                     "Index",
+                     "Home",
+                    null,
+                     new { @class = "Link" }
+                   )&copy; @DateTime.Now.Year. All Rights Reserved.
+            </p>
             <p>Sponsor for this System: Mr.Vinh</p>
+
         </footer>
     </div>
 

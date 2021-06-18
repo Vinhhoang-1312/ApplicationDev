@@ -259,15 +259,6 @@ namespace StaffTrainee.Controllers
                 CourseId = model.CourseId,
                 UserId = model.UserId
             };
-            //    if (!ModelState.IsValid)
-            //    {
-            //        EnrollmentTrainee viewmodel = new EnrollmentTrainee()
-            //        {
-            //            CourseId = model.CourseId,
-            //            UserId = model.UserId
-            //        };
-            //        return View(viewmodel);
-            //    }
             try
             {
                 if (ModelState.IsValid)
@@ -412,9 +403,27 @@ namespace StaffTrainee.Controllers
                 CourseId = model.CourseId,
                 UserId = model.UserId
             };
+            try
+            {
+                if (ModelState.IsValid)
+                {
 
-            _context.EnrollmentTrainers.Add(enrollmentTrainer);
-            _context.SaveChanges();
+                    _context.EnrollmentTrainers.Add(enrollmentTrainer);
+                    _context.SaveChanges();
+
+                    return RedirectToAction("IndexAssignTrainer");
+                }
+            }
+            catch
+
+            {
+
+                return View("~/Views/Error/Error404.cshtml");
+            }
+
+
+
+
 
             return RedirectToAction("IndexAssignTrainer");
         }
