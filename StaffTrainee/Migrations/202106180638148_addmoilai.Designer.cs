@@ -7,13 +7,13 @@ namespace StaffTrainee.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class thuthemdong20bangUserInfo : IMigrationMetadata
+    public sealed partial class addmoilai : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(thuthemdong20bangUserInfo));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addmoilai));
         
         string IMigrationMetadata.Id
         {
-            get { return "202106171154265_thuthemdong20bangUserInfo"; }
+            get { return "202106180638148_addmoilai"; }
         }
         
         string IMigrationMetadata.Source

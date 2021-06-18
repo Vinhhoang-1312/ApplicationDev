@@ -178,21 +178,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202106171045539_addmoilai.cs" />
-    <Compile Include="Migrations\202106171045539_addmoilai.Designer.cs">
-      <DependentUpon>202106171045539_addmoilai.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106171124105_xoathuforeignkey.cs" />
-    <Compile Include="Migrations\202106171124105_xoathuforeignkey.Designer.cs">
-      <DependentUpon>202106171124105_xoathuforeignkey.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106171154265_thuthemdong20bangUserInfo.cs" />
-    <Compile Include="Migrations\202106171154265_thuthemdong20bangUserInfo.Designer.cs">
-      <DependentUpon>202106171154265_thuthemdong20bangUserInfo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106180432337_addtestdepoy.cs" />
-    <Compile Include="Migrations\202106180432337_addtestdepoy.Designer.cs">
-      <DependentUpon>202106180432337_addtestdepoy.cs</DependentUpon>
+    <Compile Include="Migrations\202106180638148_addmoilai.cs" />
+    <Compile Include="Migrations\202106180638148_addmoilai.Designer.cs">
+      <DependentUpon>202106180638148_addmoilai.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -309,17 +297,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202106171045539_addmoilai.resx">
-      <DependentUpon>202106171045539_addmoilai.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106171124105_xoathuforeignkey.resx">
-      <DependentUpon>202106171124105_xoathuforeignkey.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106171154265_thuthemdong20bangUserInfo.resx">
-      <DependentUpon>202106171154265_thuthemdong20bangUserInfo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106180432337_addtestdepoy.resx">
-      <DependentUpon>202106180432337_addtestdepoy.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106180638148_addmoilai.resx">
+      <DependentUpon>202106180638148_addmoilai.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

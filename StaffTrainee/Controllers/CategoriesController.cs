@@ -31,21 +31,25 @@ namespace StaffTrainee.Controllers
         }
 
         [HttpGet]
-
+        [Authorize(Roles = "Staff")]
         public ActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-
+        [Authorize(Roles = "Staff")]
         public ActionResult Create(Category model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
-
+            if (_context.Categories.Any(c => c.Name.Contains(model.Name)))
+            {
+                ModelState.AddModelError("", "Category Name alreay exists");
+                return View(model);
+            }
             var category = new Category
             {
                 Name = model.Name,
@@ -53,21 +57,21 @@ namespace StaffTrainee.Controllers
             };
 
             _context.Categories.Add(category);
-            try
-            {
-                _context.SaveChanges();
 
-            }
-            catch (System.Data.Entity.Infrastructure.DbUpdateException)
-            {
-                ModelState.AddModelError("", "Category Name alreay exists");
-                return View(model);
-            }
+            _context.SaveChanges();
+
+            //}
+            //catch (System.Data.Entity.Infrastructure.DbUpdateException)
+            //{
+            //    ModelState.AddModelError("", "Category Name alreay exists");
+            //    return View(model);
+            //}
             return RedirectToAction("Index");
         }
 
 
         [HttpGet]
+        [Authorize(Roles = "Staff")]
         public ActionResult Delete(int? id)
         {
             //var categoriesId = User.Identity.GetUserId();
@@ -86,6 +90,7 @@ namespace StaffTrainee.Controllers
             return RedirectToAction("Index");
         }
         [HttpGet]
+        [Authorize(Roles = "Staff")]
         public ActionResult Edit(int? id)
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -97,6 +102,7 @@ namespace StaffTrainee.Controllers
             return View(categoryInDb);
         }
         [HttpPost]
+        [Authorize(Roles = "Staff")]
         public ActionResult Edit(Category category)
         {
             var categoryInDb = _context.Categories.SingleOrDefault(c => c.Id == category.Id);

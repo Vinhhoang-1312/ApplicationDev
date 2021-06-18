@@ -157,6 +157,7 @@ namespace StaffTrainee.Controllers
         [HttpGet]
         public ActionResult CreateStaff()
         {
+
             return View();
         }
 
@@ -169,12 +170,9 @@ namespace StaffTrainee.Controllers
                     var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                     var UsernameIsExist = _context.Users.
                                  Any(p => p.Email.Contains(user.Email));
+                    var categories = _context.Categories.ToList();
 
-                    if (UsernameIsExist)
-                    {
-                        ModelState.AddModelError("Email", "Account already existed");
-                        return View(model);
-                    }
+                   
                     var result = await UserManager.CreateAsync(user, model.Password);
 
 
