@@ -167,18 +167,22 @@ namespace StaffTrainee.Controllers
                 if (ModelState.IsValid)
                 {
                     var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                    var result = await UserManager.CreateAsync(user, model.Password);
-                    //var UsernameIsExist = _context.Users.
-                    //          Any(p => p.Email.Contains(user.Email));
+                    var UsernameIsExist = _context.Users.
+                                 Any(p => p.Email.Contains(user.Email));
 
-                    //if (UsernameIsExist)
-                    //{
-                    //    ModelState.AddModelError("Email", "Account already existed");
-                    //    return View();
-                    //}
-                    UserManager.AddToRole(user.Id, "Staff");
+                    if (UsernameIsExist)
+                    {
+                        ModelState.AddModelError("Email", "Account already existed");
+                        return View(model);
+                    }
+                    var result = await UserManager.CreateAsync(user, model.Password);
+
+
+
+
                     if (result.Succeeded)
                     {
+                        UserManager.AddToRole(user.Id, "Staff");
                         var userInfo = new UserInfo
                         {
                             FullName = model.FullName,
@@ -253,21 +257,18 @@ namespace StaffTrainee.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var UsernameIsExist = _context.Users.
+                              Any(p => p.Email.Contains(user.Email));
+
+                if (UsernameIsExist)
+                {
+                    ModelState.AddModelError("Email", "Account already existed");
+                    return View();
+                }
                 var result = await UserManager.CreateAsync(user, model.Password);
-
-
-                //var UsernameIsExist = _context.Users.
-                //               Any(p => p.Email.Contains(user.Email));
-
-                //if (UsernameIsExist)
-                //{
-                //    ModelState.AddModelError("Email", "Account already existed");
-                //    return View();
-                //}
-
-                UserManager.AddToRole(user.Id, "Trainer");
                 if (result.Succeeded)
                 {
+                    UserManager.AddToRole(user.Id, "Trainer");
                     var userInfo = new UserInfo
                     {
                         FullName = model.FullName,
@@ -312,24 +313,26 @@ namespace StaffTrainee.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var UsernameIsExist = _context.Users.
+                              Any(p => p.Email.Contains(user.Email));
+
+
+                if (UsernameIsExist)
+                {
+                    ModelState.AddModelError("Email", "Account already existed");
+                    return View();
+                }
                 var result = await UserManager.CreateAsync(user, model.Password);
 
-                //var UsernameIsExist = _context.Users.
-                //              Any(p => p.Email.Contains(user.Email));
-
-
-                //if (UsernameIsExist)
-                //{
-                //    ModelState.AddModelError("Email", "Account already existed");
-                //    return View();
-                //}
 
 
 
 
-                UserManager.AddToRole(user.Id, "Trainee");
+
+
                 if (result.Succeeded)
                 {
+                    UserManager.AddToRole(user.Id, "Trainee");
                     var userInfo = new UserInfo
                     {
                         FullName = model.FullName,
