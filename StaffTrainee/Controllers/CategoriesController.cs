@@ -45,11 +45,7 @@ namespace StaffTrainee.Controllers
             {
                 return View(model);
             }
-            if (_context.Categories.Any(c => c.Name.Contains(model.Name)))
-            {
-                ModelState.AddModelError("", "Category Name alreay exists");
-                return View(model);
-            }
+
             var category = new Category
             {
                 Name = model.Name,
@@ -111,49 +107,22 @@ namespace StaffTrainee.Controllers
             {
                 return View(category);
             }
-            //if (categoryInDb == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            if (_context.Categories.Any(c => c.Name.Contains(category.Name)))
+            {
+                ModelState.AddModelError("", "Category Name alreay exists");
+                return View(category);
+            }
+
 
             categoryInDb.Description = category.Description;
             categoryInDb.Name = category.Name;
 
 
-            try
-            {
-                _context.SaveChanges();
+            _context.SaveChanges();
 
-            }
-            catch (System.Data.Entity.Infrastructure.DbUpdateException)
-            {
-                ModelState.AddModelError("", "Category Name alreay exists");
-                return View(category);
-            }
             return RedirectToAction("Index");
 
-            //asdjhasdjaskdsahd
 
-            //if (!ModelState.IsValid)
-            //{
-            //    return View(model);
-            //}
-
-            //var category = new Category
-            //{
-            //    Name = model.Name,
-            //    Description = model.Description
-            //};
-
-            //_context.Categories.Add(category);
-            //try
-            //{
-            //    _context.SaveChanges();
-
-            //}
-            //catch (System.Data.Entity.Infrastructure.DbUpdateException)
-            //{
-            //    ModelState.AddModelError("", "Category Name alreay exists");
-            //    return View(model);
-            //}
-            //return RedirectToAction("Index");
         }
     }
 }
