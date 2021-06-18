@@ -48,13 +48,15 @@ namespace StaffTrainee.Controllers
             return View(staffs);
 
         }
-        [Authorize(Roles = "Admin")]
+
         [HttpGet]
+        [Authorize(Roles = "Admin,Staff")]
         public ActionResult GetTrainers()
         {
             var users = _context.Users.ToList();
             var trainers = new List<ApplicationUser>();
-
+            var userId = User.Identity.GetUserId();
+            var userInfo = _context.UserInfos.SingleOrDefault(u => u.UserId.Equals(userId));
             foreach (var user in users)
             {
                 if (_userManager.GetRoles(user.Id)[0].Equals("Trainer"))
@@ -165,7 +167,7 @@ namespace StaffTrainee.Controllers
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Staff")]
         public ActionResult EditTrainers(string id)
         {
             var AccountInDB = _context.Users.SingleOrDefault(p => p.Id == id);
@@ -178,7 +180,7 @@ namespace StaffTrainee.Controllers
 
         //EDIT
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Staff")]
         public ActionResult EditTrainers(ApplicationUser user)
         {
             if (!ModelState.IsValid)
@@ -210,7 +212,7 @@ namespace StaffTrainee.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Staff")]
         public ActionResult ChangePassTrainers(string id)
         {
             var AccountInDB = _context.Users.SingleOrDefault(p => p.Id == id);

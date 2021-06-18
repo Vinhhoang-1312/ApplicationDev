@@ -1,82 +1,93 @@
 ﻿@model IEnumerable<StaffTrainee.Models.ApplicationUser>
+
 @{
     ViewBag.Title = "GetTrainers";
 }
+
+<h2>Show all Trainer</h2>
+<h2></h2>
 @if (User.IsInRole("Admin"))
 {
-    <h2>Show all Trainer</h2>
-    <h2></h2>
     @Html.ActionLink(
-         "Create new Trainer",
-         "CreateTrainer",
-         "Account",
-         null,
-         new { @class = "btn btn-default" }
-             )
-
+                     "Create new Trainer",
+                     "CreateTrainer",
+                     "Account",
+                     null,
+                     new { @class = "btn btn-default" }
+                         )
+}
     <h2></h2>
 
 
 
 
 
-<table class="table">
-    <thead class="thead-light">
-        <tr>
-            <th scope="col"></th>
-            <th scope="col">StaffList</th>
-            <th scope="col"></th>
 
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var trainer in Model)
-        {
+
+
+    <table class="table">
+        <thead class="thead-light">
             <tr>
-                <th scope="row"></th>
-                <td>@trainer.UserName</td>
-                <td></td>
-
-
-                @if (User.IsInRole("Admin"))
-                {
-            <td>
-
-
-
-                @Html.ActionLink("DeleteTrainers", // <-- Link text
-                                                                    "DeleteTrainers", // <-- Action Method Name
-                                                                    "Admin", // <-- Controller Name
-                                                                    new { id = trainer.Id }, // <-- Route value
-                                                                    new { @class = "btn btn-danger" })   @*htmlArguments*@
-
-                                                                    @Html.ActionLink(
-                                                         "Reset Staff Password",
-                                                         "ChangePassTrainers",
-                                                         "Admin",
-                                                         new { id = trainer.Id },
-                                                         new { @class = "btn btn-success" }
-                                                       )
-
-                                                                    @Html.ActionLink("EditTrainers", // <-- Link text
-                                                                                                                      "EditTrainers", // <-- Action Method Name
-                                                                                                                      "Admin", // <-- Controller Name
-                                                                                                                      new { id = trainer.Id }, // <-- Route value
-                                                                                                                      new { @class = "btn btn-info" })   @*htmlArguments*@
-
-
-
-                                                                                                                </td>
-
-
-}
+                <th scope="col"></th>
+                <th scope="col">TrainerList</th>
+                <th scope="col"></th>
 
             </tr>
+        </thead>
+        <tbody>
+            @foreach (var trainer in Model)
+            {
+                <tr>
+                    <th scope="row"></th>
+                    <td>@trainer.UserName</td>
+                    <td></td>
+                    <td>
+
+
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            @Html.ActionLink("DeleteTrainers", // <-- Link text
+                     "DeleteTrainers", // <-- Action Method Name
+                     "Admin", // <-- Controller Name
+                     new { id = trainer.Id }, // <-- Route value
+                     new { @class = "btn btn-danger" }) @*htmlArguments*@
+
+                    @Html.ActionLink(
+"Reset Trainer Password",
+"ChangePassTrainers",
+"Admin",
+new { id = trainer.Id },
+new { @class = "btn btn-success" }
+)
+
+                    @Html.ActionLink("EditTrainers", // <-- Link text
+"EditTrainers", // <-- Action Method Name
+"Admin", // <-- Controller Name
+new { id = trainer.Id }, // <-- Route value
+new { @class = "btn btn-info" })
+                }
+                        @if (User.IsInRole("Staff"))
+                        {
+                          
+
+
+                    @Html.ActionLink("EditTrainers", // <-- Link text
+"EditTrainers", // <-- Action Method Name
+"Admin", // <-- Controller Name
+new { id = trainer.Id }, // <-- Route value
+new { @class = "btn btn-info" })
+                }
+                    </td>
 
 
 
 
-        }
-    </tbody>
-</table>
-}
+                </tr>
+
+
+
+
+            }
+        </tbody>
+    </table>

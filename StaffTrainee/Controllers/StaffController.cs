@@ -32,6 +32,9 @@ namespace StaffTrainee.Controllers
             var users = _context.Users.ToList();
             var trainees = new List<ApplicationUser>();
 
+
+
+
             foreach (var user in users)
             {
                 if (_userManager.GetRoles(user.Id)[0].Equals("Trainee"))
@@ -43,6 +46,10 @@ namespace StaffTrainee.Controllers
 
             return View(trainees);
         }
+
+
+
+
 
         [HttpGet]
         [Authorize(Roles = "Staff")]
@@ -139,6 +146,28 @@ namespace StaffTrainee.Controllers
         //Khai báo biến var userId thuộc Curent.User.Identity và truy cập vào trường Id thông qua GetUserId   
 
 
+
+
+
+
+
+        //[Authorize(Roles = "Staff")]
+        //[HttpGet]
+        //public ActionResult GetTrainersInfo()
+        //{
+        //    if (User.IsInRole("Staff"))
+        //    {
+        //        var viewTrainer = _context.UserInfos.Include(a => a.User).ToList();
+        //        return View(viewTrainer);
+        //    }
+        //    if (User.IsInRole("Trainer"))
+        //    {
+        //        var trainerId = User.Identity.GetUserId();
+        //        var trainerVM = _context.TrainerUsers.Where(te => te.TrainerID == trainerId).ToList();
+        //        return View(trainerVM);
+        //    }
+        //    return View("Index");
+        //}
     }
 
 
