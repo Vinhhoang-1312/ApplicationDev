@@ -73,11 +73,11 @@ namespace StaffTrainee.Models
         [Required]
         [RegularExpression(@"^[0-9a-zA-Z''-'\s]{1,40}$",
         ErrorMessage = "special characters are not  allowed.")]
-        public string UserName { get; set; }
+        public string FullName { get; set; }
 
         [Required(ErrorMessage = "Required")]
         [RegularExpression(@"^(\d{10})$", ErrorMessage = "Wrong mobile")]
-        public string PhoneNumber { get; set; }
+        public string Phone { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]

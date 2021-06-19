@@ -109,7 +109,7 @@ namespace StaffTrainee.Controllers
                 return View();
             }
             var UsernameIsExist = _context.Users.
-                                  Any(p => p.Email.Contains(user.Email));
+                                  Any(p => p.UserName.Contains(user.UserName));
 
             if (UsernameIsExist)
             {
@@ -124,7 +124,7 @@ namespace StaffTrainee.Controllers
                 return HttpNotFound();
             }
 
-            AccountInDB.Email = user.Email;
+            AccountInDB.UserName = user.UserName;
             AccountInDB.PhoneNumber = user.PhoneNumber;
 
 
