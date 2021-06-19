@@ -178,6 +178,7 @@ namespace StaffTrainee.Controllers
                 return HttpNotFound();
             }
 
+            AccountInDB.Email = user.Email;
             AccountInDB.UserName = user.UserName;
             AccountInDB.PhoneNumber = user.PhoneNumber;
 

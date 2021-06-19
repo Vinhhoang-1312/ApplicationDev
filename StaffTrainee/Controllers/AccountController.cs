@@ -10,7 +10,6 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using StaffTrainee.Models;
 
-
 namespace StaffTrainee.Controllers
 {
     [Authorize]
@@ -157,7 +156,6 @@ namespace StaffTrainee.Controllers
         [HttpGet]
         public ActionResult CreateStaff()
         {
-
             return View();
         }
 
@@ -167,47 +165,85 @@ namespace StaffTrainee.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var user = new ApplicationUser { UserName = model.FullName, Email = model.Email };
-                    var UsernameIsExist = _context.Users.
-                                 Any(p => p.Email.Contains(user.Email));
-                    var categories = _context.Categories.ToList();
-
-
+                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                     var result = await UserManager.CreateAsync(user, model.Password);
-
-
-
-
+                    UserManager.AddToRole(user.Id, "Staff");
                     if (result.Succeeded)
                     {
-                        UserManager.AddToRole(user.Id, "Staff");
                         var userInfo = new UserInfo
                         {
-                            FullName = model.FullName,
-                            Phone = model.Phone,
+                            FullName = model.UserName,
+                            Phone = model.PhoneNumber,
                             UserId = user.Id
                         };
                         _context.UserInfos.Add(userInfo);
-                        _context.SaveChanges();
-                        return RedirectToAction("GetStaffs", "Admin");
+                        try
+                        {
+                            _context.SaveChanges();
+                        }
+                        catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                        {
+                            ModelState.AddModelError("", "Account alreay exists");
+                            return View(user);
+                        }
 
 
+
+                        return RedirectToAction("Index", "Home");
                     }
+
+
+                    AddErrors(result);
+
                 }
+
+
+
+
+
 
             }
             return View(model);
         }
 
 
+        //[HttpPost]
+        //public ActionResult CreateStaff(RegisterViewModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.Phone };
+        //        var result = _userManager.Create(user, model.Password);
+        //        if (result.Succeeded)
+        //        {
+        //            _userManager.AddToRole(user.Id, "Staff");
+        //            _context.SaveChanges();
+        //        }
 
-        /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //        return RedirectToAction("StaffList");
+        //    }
+        //    return View(model);
+
+
+
+
+
+
+
+
+
+        //}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -225,35 +261,26 @@ namespace StaffTrainee.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.FullName, Email = model.Email };
-                var UsernameIsExist = _context.Users.
-                              Any(p => p.Email.Contains(user.Email));
-
-                if (UsernameIsExist)
-                {
-                    ModelState.AddModelError("Email", "Account already existed");
-                    return View();
-                }
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                UserManager.AddToRole(user.Id, "Trainer");
                 if (result.Succeeded)
                 {
-                    UserManager.AddToRole(user.Id, "Trainer");
                     var userInfo = new UserInfo
                     {
-                        FullName = model.FullName,
-                        Phone = model.Phone,
+                        FullName = model.UserName,
+                        Phone = model.PhoneNumber,
                         UserId = user.Id
 
                     };
-
                     _context.UserInfos.Add(userInfo);
 
 
                     _context.SaveChanges();
 
-                    return RedirectToAction("GetTrainers", "Admin");
+                    return RedirectToAction("Index", "Home");
                 }
-
+                AddErrors(result);
             }
 
             return View(model);
@@ -281,24 +308,15 @@ namespace StaffTrainee.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.FullName, Email = model.Email };
-                var UsernameIsExist = _context.Users.
-                              Any(p => p.Email.Contains(user.Email));
-
-
-                if (UsernameIsExist)
-                {
-                    ModelState.AddModelError("Email", "Account already existed");
-                    return View();
-                }
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                UserManager.AddToRole(user.Id, "Trainee");
                 if (result.Succeeded)
                 {
-                    UserManager.AddToRole(user.Id, "Trainee");
                     var userInfo = new UserInfo
                     {
-                        FullName = model.FullName,
-                        Phone = model.Phone,
+                        FullName = model.UserName,
+                        Phone = model.PhoneNumber,
                         UserId = user.Id
 
                     };
@@ -307,22 +325,27 @@ namespace StaffTrainee.Controllers
 
                     _context.SaveChanges();
 
-                    return RedirectToAction("GetTrainees", "Staff");
+                    return RedirectToAction("Index", "Home");
                 }
-
-
-
-
                 AddErrors(result);
             }
 
             return View(model);
         }
+
+
+
+
+
+
+
+
+
+
         //
         // GET: /Account/Register
 
         [AllowAnonymous]
-
         public ActionResult Register()
         {
             return View();
@@ -332,21 +355,20 @@ namespace StaffTrainee.Controllers
         // POST: /Account/Register
 
         [HttpPost]
-
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.FullName, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     var userInfo = new UserInfo
                     {
-                        FullName = model.FullName,
-                        Phone = model.Phone,
+                        FullName = model.UserName,
+                        Phone = model.PhoneNumber,
                         UserId = user.Id
 
                     };
@@ -569,7 +591,6 @@ namespace StaffTrainee.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                //chua biet fix username=fullname
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
