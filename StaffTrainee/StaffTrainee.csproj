@@ -186,6 +186,10 @@
     <Compile Include="Migrations\202106190424488_addthemthongtinchobanguser.Designer.cs">
       <DependentUpon>202106190424488_addthemthongtinchobanguser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106190852065_add.cs" />
+    <Compile Include="Migrations\202106190852065_add.Designer.cs">
+      <DependentUpon>202106190852065_add.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -285,6 +289,8 @@
     <Content Include="Views\UserInfos\Index.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Staff\GetTrainers.cshtml" />
+    <Content Include="Views\Staff\EditTrainerInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -308,6 +314,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106190424488_addthemthongtinchobanguser.resx">
       <DependentUpon>202106190424488_addthemthongtinchobanguser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106190852065_add.resx">
+      <DependentUpon>202106190852065_add.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

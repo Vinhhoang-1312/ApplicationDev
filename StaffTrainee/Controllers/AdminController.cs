@@ -88,7 +88,7 @@ namespace StaffTrainee.Controllers
 
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Staff")]
         public ActionResult EditStaffs(string id)
         {
             var AccountInDB = _context.Users.SingleOrDefault(p => p.Id == id);
@@ -101,7 +101,7 @@ namespace StaffTrainee.Controllers
 
         //EDIT
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Staff")]
         public ActionResult EditStaffs(ApplicationUser user)
         {
             if (!ModelState.IsValid)
@@ -125,7 +125,9 @@ namespace StaffTrainee.Controllers
             }
 
             AccountInDB.UserName = user.UserName;
+
             AccountInDB.PhoneNumber = user.PhoneNumber;
+
 
 
             _context.SaveChanges();

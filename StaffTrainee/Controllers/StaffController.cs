@@ -88,56 +88,45 @@ namespace StaffTrainee.Controllers
 
             return View(trainers);
         }
-        //[HttpGet]
-        //[Authorize(Roles = "Admin")]
-        //public ActionResult EditTrainersInfo(string id)
-        //{
-        //    var AccountInDB = _context.Users.SingleOrDefault(p => p.Id == id);
-        //    if (AccountInDB == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(AccountInDB);
-        //}
-        ////EDIT
-        //[HttpPost]
-        //[Authorize(Roles = "Admin")]
-        //public ActionResult EditTrainersInfo(ApplicationUser user)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View();
-        //    }
-        //    var UsernameIsExist = _context.Users.
-        //                          Any(p => p.Email.Contains(user.Email));
-
-        //    if (UsernameIsExist)
-        //    {
-        //        ModelState.AddModelError("Email", "Account already existed");
-        //        return View();
-        //    }
-
-        //    var AccountInDB = _context.Users.SingleOrDefault(p => p.Id == user.Id);
-
-        //    if (AccountInDB == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    //var userInfo = new UserInfo
-        //    //{
-        //    //    FullName = model.FullName,
-        //    //    Phone = model.Phone,
-        //    //    UserId = user.Id
-
-        //    //};
-        //    //_context.UserInfos.Add(userInfo);
-        //    //AccountInDB.UserName = user.UserName;
-        //    //AccountInDB.PhoneNumber = user.PhoneNumber;
 
 
-        //    _context.SaveChanges();
-        //    return RedirectToAction("GetStaffs", "Admin");
-        //}
+        [HttpGet]
+        public ActionResult EditTrainerInfo()
+        {
+            var currentuserid = User.Identity.GetUserId();
+            var UserInDb = _context.UserInfos.SingleOrDefault(c => c.UserId == currentuserid);
+            return View(UserInDb);
+        }
+        [HttpPost]
+        public ActionResult EditTrainerInfo(UserInfo userinfo)
+        {
+
+            var currentuserid = User.Identity.GetUserId();
+            var UserInDb = _context.Users.SingleOrDefault(c => c.Id == currentuserid);
+            var TrainerInDb = _context.UserInfos.SingleOrDefault(c => c.UserId == currentuserid);
+
+            UserInDb.PhoneNumber = userinfo.Phone;
+            TrainerInDb.FullName = userinfo.FullName;
+            TrainerInDb.Phone = userinfo.Phone;
+
+
+            _context.SaveChanges();
+
+
+            return RedirectToAction("EditTrainerInfo", "Staff");
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

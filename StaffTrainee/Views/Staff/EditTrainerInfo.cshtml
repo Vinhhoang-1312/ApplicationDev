@@ -1,0 +1,26 @@
+﻿@model StaffTrainee.Models.UserInfo
+@{
+    ViewBag.Title = "EditTrainerInfo";
+}
+
+<h2>EditTrainerInfo</h2>
+
+
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+@using (Html.BeginForm("EditTrainerInfo", "Staff", FormMethod.Post))
+{
+
+                <div class="form-group">
+                  
+                    @Html.LabelFor(p => p.FullName)
+                    @Html.EditorFor(p => p.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(p => p.FullName, "", new { @class = "text-danger" })
+                    
+                    @Html.LabelFor(p => p.Phone)
+                    @Html.EditorFor(p => p.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(p => p.Phone, "", new { @class = "text-danger" })
+
+                 
+
+                </div>
+                                <button type="submit" class="btn btn-primary">Edit</button>}
