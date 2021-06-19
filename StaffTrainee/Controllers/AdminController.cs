@@ -124,7 +124,7 @@ namespace StaffTrainee.Controllers
                 return HttpNotFound();
             }
 
-            AccountInDB.UserName = user.UserName;
+            AccountInDB.Email = user.Email;
             AccountInDB.PhoneNumber = user.PhoneNumber;
 
 
@@ -203,8 +203,17 @@ namespace StaffTrainee.Controllers
                 return HttpNotFound();
             }
 
-            AccountInDB.UserName = user.UserName;
+            AccountInDB.Email = user.Email;
             AccountInDB.PhoneNumber = user.PhoneNumber;
+            //var userInfo = new AccountController
+            //{
+            //    FullName = account.FullName,
+            //    Phone = userInfo.Phone,
+
+
+            //};
+            //_context.UserInfos.Add(userInfo);
+
 
 
             _context.SaveChanges();
@@ -212,7 +221,7 @@ namespace StaffTrainee.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin,Staff")]
+        [Authorize(Roles = "Admin")]
         public ActionResult ChangePassTrainers(string id)
         {
             var AccountInDB = _context.Users.SingleOrDefault(p => p.Id == id);

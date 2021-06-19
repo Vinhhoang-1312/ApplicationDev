@@ -12,9 +12,9 @@
     @Html.HiddenFor(p => p.Id)
     <div class="form-group">
         @Html.AntiForgeryToken()
-        @Html.LabelFor(p => p.UserName)
-        @Html.EditorFor(p => p.UserName, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(p => p.UserName, "", new { @class = "text-danger" })
+        @Html.LabelFor(p => p.Email)
+        @Html.EditorFor(p => p.Email, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(p => p.Email, "", new { @class = "text-danger" })
         
             @Html.LabelFor(p => p.PhoneNumber)
             @Html.EditorFor(p => p.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })

@@ -167,7 +167,7 @@ namespace StaffTrainee.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                    var user = new ApplicationUser { UserName = model.FullName, Email = model.Email };
                     var UsernameIsExist = _context.Users.
                                  Any(p => p.Email.Contains(user.Email));
                     var categories = _context.Categories.ToList();
@@ -225,7 +225,7 @@ namespace StaffTrainee.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.FullName, Email = model.Email };
                 var UsernameIsExist = _context.Users.
                               Any(p => p.Email.Contains(user.Email));
 
@@ -281,7 +281,7 @@ namespace StaffTrainee.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.FullName, Email = model.Email };
                 var UsernameIsExist = _context.Users.
                               Any(p => p.Email.Contains(user.Email));
 
@@ -339,7 +339,7 @@ namespace StaffTrainee.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.FullName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -569,6 +569,7 @@ namespace StaffTrainee.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
+                //chua biet fix username=fullname
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
