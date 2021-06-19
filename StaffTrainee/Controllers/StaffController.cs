@@ -160,11 +160,11 @@ namespace StaffTrainee.Controllers
                 return View();
             }
             var UsernameIsExist = _context.Users.
-                                  Any(p => p.Email.Contains(user.Email));
+                                  Any(p => p.UserName.Contains(user.UserName));
 
             if (UsernameIsExist)
             {
-                ModelState.AddModelError("Email", "Account already existed");
+                ModelState.AddModelError("UserName", "Account already existed");
                 return View();
             }
 
