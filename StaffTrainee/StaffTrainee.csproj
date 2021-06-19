@@ -182,6 +182,10 @@
     <Compile Include="Migrations\202106180638148_addmoilai.Designer.cs">
       <DependentUpon>202106180638148_addmoilai.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106190424488_addthemthongtinchobanguser.cs" />
+    <Compile Include="Migrations\202106190424488_addthemthongtinchobanguser.Designer.cs">
+      <DependentUpon>202106190424488_addthemthongtinchobanguser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -301,6 +305,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202106180638148_addmoilai.resx">
       <DependentUpon>202106180638148_addmoilai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106190424488_addthemthongtinchobanguser.resx">
+      <DependentUpon>202106190424488_addthemthongtinchobanguser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

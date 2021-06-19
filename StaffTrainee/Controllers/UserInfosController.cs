@@ -54,40 +54,6 @@ namespace StaffTrainee.Controllers
             return RedirectToAction("Index");
         }
 
-
-        [HttpGet]
-        [Authorize(Roles = "Staff")]
-        public ActionResult Delete(int id)
-        {
-            var userinfo = _context.UserInfos.SingleOrDefault(trdb => trdb.UserInfoId == id);
-            if (userinfo == null)
-            {
-                return HttpNotFound();
-            }
-
-            _context.UserInfos.Remove(userinfo);
-            _context.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        //[HttpGet]
-        //public ActionResult Delete(int? id)
-        //{
-        //    //var categoriesId = User.Identity.GetUserId();
-
-        //    if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
-        //    var categoryinDb = _context.Categories
-        //        //.Where(c => c.Id.Equals(userId))
-        //        .SingleOrDefault(c => c.Id == id);
-
-        //    if (categoryinDb == null) return HttpNotFound();
-
-        //    _context.Categories.Remove(categoryinDb);
-        //    _context.SaveChanges();
-
-        //    return RedirectToAction("Index");
-        //}
         //[Authorize(Roles = "Admin")]
         //public ActionResult Delete(string id)
         //{

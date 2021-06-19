@@ -4,6 +4,7 @@ using StaffTrainee.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -32,6 +33,9 @@ namespace StaffTrainee.Controllers
             var users = _context.Users.ToList();
             var trainees = new List<ApplicationUser>();
 
+
+
+
             foreach (var user in users)
             {
                 if (_userManager.GetRoles(user.Id)[0].Equals("Trainee"))
@@ -43,6 +47,10 @@ namespace StaffTrainee.Controllers
 
             return View(trainees);
         }
+
+
+
+
 
         [HttpGet]
         [Authorize(Roles = "Staff")]
@@ -59,6 +67,78 @@ namespace StaffTrainee.Controllers
             _context.SaveChanges();
             return RedirectToAction("GetTrainees", "Staff");
         }
+
+
+        [HttpGet]
+        [Authorize(Roles = "Staff")]
+        public ActionResult GetTrainers()
+        {
+            var users = _context.Users.ToList();
+            var trainers = new List<ApplicationUser>();
+            var userId = User.Identity.GetUserId();
+            var userInfo = _context.UserInfos.SingleOrDefault(u => u.UserId.Equals(userId));
+            foreach (var user in users)
+            {
+                if (_userManager.GetRoles(user.Id)[0].Equals("Trainer"))
+                {
+                    trainers.Add(user);
+                }
+
+            }
+
+            return View(trainers);
+        }
+        //[HttpGet]
+        //[Authorize(Roles = "Admin")]
+        //public ActionResult EditTrainersInfo(string id)
+        //{
+        //    var AccountInDB = _context.Users.SingleOrDefault(p => p.Id == id);
+        //    if (AccountInDB == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(AccountInDB);
+        //}
+        ////EDIT
+        //[HttpPost]
+        //[Authorize(Roles = "Admin")]
+        //public ActionResult EditTrainersInfo(ApplicationUser user)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View();
+        //    }
+        //    var UsernameIsExist = _context.Users.
+        //                          Any(p => p.Email.Contains(user.Email));
+
+        //    if (UsernameIsExist)
+        //    {
+        //        ModelState.AddModelError("Email", "Account already existed");
+        //        return View();
+        //    }
+
+        //    var AccountInDB = _context.Users.SingleOrDefault(p => p.Id == user.Id);
+
+        //    if (AccountInDB == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    //var userInfo = new UserInfo
+        //    //{
+        //    //    FullName = model.FullName,
+        //    //    Phone = model.Phone,
+        //    //    UserId = user.Id
+
+        //    //};
+        //    //_context.UserInfos.Add(userInfo);
+        //    //AccountInDB.UserName = user.UserName;
+        //    //AccountInDB.PhoneNumber = user.PhoneNumber;
+
+
+        //    _context.SaveChanges();
+        //    return RedirectToAction("GetStaffs", "Admin");
+        //}
+
 
 
         [HttpGet]
@@ -98,6 +178,7 @@ namespace StaffTrainee.Controllers
                 return HttpNotFound();
             }
 
+            AccountInDB.Email = user.Email;
             AccountInDB.UserName = user.UserName;
             AccountInDB.PhoneNumber = user.PhoneNumber;
 
@@ -139,6 +220,28 @@ namespace StaffTrainee.Controllers
         //Khai báo biến var userId thuộc Curent.User.Identity và truy cập vào trường Id thông qua GetUserId   
 
 
+
+
+
+
+
+        //[Authorize(Roles = "Staff")]
+        //[HttpGet]
+        //public ActionResult GetTrainersInfo()
+        //{
+        //    if (User.IsInRole("Staff"))
+        //    {
+        //        var viewTrainer = _context.UserInfos.Include(a => a.User).ToList();
+        //        return View(viewTrainer);
+        //    }
+        //    if (User.IsInRole("Trainer"))
+        //    {
+        //        var trainerId = User.Identity.GetUserId();
+        //        var trainerVM = _context.TrainerUsers.Where(te => te.TrainerID == trainerId).ToList();
+        //        return View(trainerVM);
+        //    }
+        //    return View("Index");
+        //}
     }
 
 

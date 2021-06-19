@@ -48,13 +48,15 @@ namespace StaffTrainee.Controllers
             return View(staffs);
 
         }
-        [Authorize(Roles = "Admin")]
+
         [HttpGet]
+        [Authorize(Roles = "Admin,Staff")]
         public ActionResult GetTrainers()
         {
             var users = _context.Users.ToList();
             var trainers = new List<ApplicationUser>();
-
+            var userId = User.Identity.GetUserId();
+            var userInfo = _context.UserInfos.SingleOrDefault(u => u.UserId.Equals(userId));
             foreach (var user in users)
             {
                 if (_userManager.GetRoles(user.Id)[0].Equals("Trainer"))
@@ -122,8 +124,9 @@ namespace StaffTrainee.Controllers
                 return HttpNotFound();
             }
 
-            AccountInDB.UserName = user.UserName;
-            AccountInDB.PhoneNumber = user.PhoneNumber;
+            AccountInDB.Email = user.Email;
+            //AccountInDB.PhoneNumber = user.PhoneNumber; 
+            //khong can number khi quan ly account , number la thong tin nguoi dung
 
 
             _context.SaveChanges();
@@ -149,7 +152,7 @@ namespace StaffTrainee.Controllers
                 //userManager           bằng quản lý người dùng mới,              mang dữ liệu mới 
                 UserManager<IdentityUser> userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
                 userManager.RemovePassword(userId);
-                String newPassword = "Password1@";
+                String newPassword = "123456";
                 userManager.AddPassword(userId, newPassword);
             }
             _context.SaveChanges();
@@ -165,7 +168,7 @@ namespace StaffTrainee.Controllers
         /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Staff")]
         public ActionResult EditTrainers(string id)
         {
             var AccountInDB = _context.Users.SingleOrDefault(p => p.Id == id);
@@ -178,7 +181,7 @@ namespace StaffTrainee.Controllers
 
         //EDIT
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Staff")]
         public ActionResult EditTrainers(ApplicationUser user)
         {
             if (!ModelState.IsValid)
@@ -201,8 +204,12 @@ namespace StaffTrainee.Controllers
                 return HttpNotFound();
             }
 
+            AccountInDB.Email = user.Email;
             AccountInDB.UserName = user.UserName;
+            //AccountInDB.PasswordHash = user.PasswordHash;
             AccountInDB.PhoneNumber = user.PhoneNumber;
+            //khong can number khi quan ly account , number la thong tin nguoi dung
+
 
 
             _context.SaveChanges();
@@ -228,7 +235,7 @@ namespace StaffTrainee.Controllers
                 //userManager           bằng quản lý người dùng mới,              mang dữ liệu mới 
                 UserManager<IdentityUser> userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
                 userManager.RemovePassword(userId);
-                String newPassword = "Password1@";
+                String newPassword = "123456";
                 userManager.AddPassword(userId, newPassword);
             }
             _context.SaveChanges();

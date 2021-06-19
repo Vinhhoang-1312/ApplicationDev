@@ -6,6 +6,7 @@ namespace StaffTrainee.Models
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
+
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
@@ -66,18 +67,17 @@ namespace StaffTrainee.Models
     {
         [Required]
         [EmailAddress]
+
         [Display(Name = "Email")]
         public string Email { get; set; }
         [Required]
-        public string FullName { get; set; }
-        //[Required(ErrorMessage = "You must provide a phone number")]
-        //[Display(Name = "Phone")]
-        //[DataType(DataType.PhoneNumber)]
-        //[RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
-        //public string Phone { get; set; }
+        [RegularExpression(@"^[0-9a-zA-Z''-'\s]{1,40}$",
+        ErrorMessage = "special characters are not  allowed.")]
+        public string UserName { get; set; }
+
         [Required(ErrorMessage = "Required")]
         [RegularExpression(@"^(\d{10})$", ErrorMessage = "Wrong mobile")]
-        public string Phone { get; set; }
+        public string PhoneNumber { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
