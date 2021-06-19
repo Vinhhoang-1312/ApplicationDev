@@ -139,14 +139,14 @@ namespace StaffTrainee.Controllers
 
 
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult CreateStaff()
         {
             return View();
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult> CreateStaff(RegisterViewModel model)
         {
@@ -177,14 +177,14 @@ namespace StaffTrainee.Controllers
 
 
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult CreateTrainer()
         {
             return View();
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult> CreateTrainer(RegisterViewModel model)
         {
@@ -192,7 +192,7 @@ namespace StaffTrainee.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
-                UserManager.AddToRole(user.Id, "trainer");
+                UserManager.AddToRole(user.Id, "Trainer");
                 if (result.Succeeded)
                 {
                     var userInfo = new UserInfo
@@ -218,14 +218,14 @@ namespace StaffTrainee.Controllers
 
 
 
-        [Authorize(Roles = "staff")]
+        [Authorize(Roles = "Staff")]
         [HttpGet]
         public ActionResult CreateTrainee()
         {
             return View();
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult> CreateTrainee(RegisterViewModel model)
         {
@@ -233,7 +233,7 @@ namespace StaffTrainee.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
-                UserManager.AddToRole(user.Id, "trainee");
+                UserManager.AddToRole(user.Id, "Trainee");
                 if (result.Succeeded)
                 {
                     var userInfo = new UserInfo
@@ -259,7 +259,7 @@ namespace StaffTrainee.Controllers
 
         // GET: /Account/Register
         [AllowAnonymous]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "Admin")]
 
         public ActionResult Register()
         {
@@ -272,7 +272,7 @@ namespace StaffTrainee.Controllers
 
         //
         // POST: /Account/Register
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
