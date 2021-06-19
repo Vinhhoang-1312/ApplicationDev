@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using StaffTrainee.Models;
+using StaffTrainee.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,10 +49,6 @@ namespace StaffTrainee.Controllers
             return View(trainees);
         }
 
-
-
-
-
         [HttpGet]
         [Authorize(Roles = "Staff")]
         public ActionResult DeleteTrainees(string id)
@@ -67,8 +64,6 @@ namespace StaffTrainee.Controllers
             _context.SaveChanges();
             return RedirectToAction("GetTrainees", "Staff");
         }
-
-
         [HttpGet]
         [Authorize(Roles = "Staff")]
         public ActionResult GetTrainers()
@@ -91,29 +86,38 @@ namespace StaffTrainee.Controllers
 
 
         [HttpGet]
-        public ActionResult EditTrainerInfo()
+        [Authorize(Roles = "Staff")]
+        public ActionResult EditTrainerInfo(string id)
         {
-            var currentuserid = User.Identity.GetUserId();
+
+
+            var currentuserid = id;
             var UserInDb = _context.UserInfos.SingleOrDefault(c => c.UserId == currentuserid);
-            return View(UserInDb);
+            var viewModel = new EditTrainerInfoViewModel() { UserId = id, FullName = UserInDb.FullName, Phone = UserInDb.Phone };
+            return View(viewModel);
         }
+
         [HttpPost]
-        public ActionResult EditTrainerInfo(UserInfo userinfo)
+        [Authorize(Roles = "Staff")]
+        public ActionResult EditTrainerInfo(EditTrainerInfoViewModel model)
         {
 
-            var currentuserid = User.Identity.GetUserId();
-            var UserInDb = _context.Users.SingleOrDefault(c => c.Id == currentuserid);
-            var TrainerInDb = _context.UserInfos.SingleOrDefault(c => c.UserId == currentuserid);
+            //var currentuserid = User.Identity.GetUserId();
+            //var UserInDb = _context.Users.SingleOrDefault(c => c.Id == currentuserid);
+            var TrainerInDb = _context.UserInfos.SingleOrDefault(c => c.UserId == model.UserId);
 
-            UserInDb.PhoneNumber = userinfo.Phone;
-            TrainerInDb.FullName = userinfo.FullName;
-            TrainerInDb.Phone = userinfo.Phone;
+            //UserInDb.PhoneNumber = userinfo.Phone;
 
 
+            TrainerInDb.FullName = model.FullName;
+            TrainerInDb.Phone = model.Phone;
+            if (!ModelState.IsValid)
+            {
+                return View("~/Views/Error/Error404.cshtml");
+            }
             _context.SaveChanges();
 
-
-            return RedirectToAction("EditTrainerInfo", "Staff");
+            return RedirectToAction("GetTrainers");
         }
 
 

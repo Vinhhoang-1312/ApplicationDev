@@ -203,6 +203,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CourseCategoriesViewModel.cs" />
+    <Compile Include="ViewModels\EditTrainerInfoViewModel.cs" />
     <Compile Include="ViewModels\EnrollmentTrainerViewModel.cs" />
     <Compile Include="ViewModels\EnrollmentTraineeViewModel.cs" />
   </ItemGroup>

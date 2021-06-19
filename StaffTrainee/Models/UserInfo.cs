@@ -15,11 +15,7 @@ namespace StaffTrainee.Models
     {
 
         public int UserInfoId { get; set; }
-
-
         [Required]
-
-
         public string UserId { get; set; }
         public IEnumerable<ApplicationUser> Users { get; set; }
         public ApplicationUser User { get; set; }

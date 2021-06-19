@@ -1,63 +1,38 @@
 ﻿@model IEnumerable<StaffTrainee.Models.ApplicationUser>
 
-@{
-    ViewBag.Title = "GetTrainers";
-}
+@{ ViewBag.Title = "GetTrainers"; }
 
 <h2>Show all Trainer</h2>
 <h2></h2>
 
-    <h2></h2>
+<h2></h2>
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">TrainerList</th>
+            <th scope="col"></th>
 
-
-
-
-
-
-
-
-    <table class="table">
-        <thead class="thead-light">
-            <tr>
-                <th scope="col"></th>
-                <th scope="col">TrainerList</th>
-                <th scope="col"></th>
-
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var trainer in Model)
-            {
-                <tr>
-                    <th scope="row"></th>
-                    <td>@trainer.UserName</td>
-                    <td></td>
-                    <td>
-
-
-
-                        @if (User.IsInRole("Staff"))
-                        {
-                            
-
-
-                    @Html.ActionLink("EditTrainers", // <-- Link text
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var trainer in Model)
+        {
+<tr>
+    <th scope="row"></th>
+    <td>@trainer.UserName</td>
+    <td></td>
+    <td>
+        @if (User.IsInRole("Staff"))
+        {
+@Html.ActionLink("EditTrainers", // <-- Link text
 "EditTrainerInfo", // <-- Action Method Name
 "Staff", // <-- Controller Name
 new { id = trainer.Id }, // <-- Route value
-new { @class = "btn btn-info" })
-                }
-                       
-                    </td>
+new { @class = "btn btn-info" })                }
 
+    </td>
 
-
-
-                </tr>
-
-
-
-
-            }
-        </tbody>
-    </table>
+</tr>            }
+    </tbody>
+</table>
