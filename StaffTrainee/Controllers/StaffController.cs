@@ -101,23 +101,27 @@ namespace StaffTrainee.Controllers
         [Authorize(Roles = "Staff")]
         public ActionResult EditTrainerInfo(EditTrainerInfoViewModel model)
         {
-
-            //var currentuserid = User.Identity.GetUserId();
-            //var UserInDb = _context.Users.SingleOrDefault(c => c.Id == currentuserid);
-            var TrainerInDb = _context.UserInfos.SingleOrDefault(c => c.UserId == model.UserId);
-
-            //UserInDb.PhoneNumber = userinfo.Phone;
-
-
-            TrainerInDb.FullName = model.FullName;
-            TrainerInDb.Phone = model.Phone;
-            if (!ModelState.IsValid)
+            try
             {
-                return View("~/Views/Error/Error404.cshtml");
-            }
-            _context.SaveChanges();
+                var TrainerInDb = _context.UserInfos.SingleOrDefault(c => c.UserId == model.UserId);
 
-            return RedirectToAction("GetTrainers");
+
+
+
+                TrainerInDb.FullName = model.FullName;
+                TrainerInDb.Phone = model.Phone;
+
+
+
+
+                _context.SaveChanges();
+                return RedirectToAction("GetTrainers");
+            }
+
+            catch { return View("~/Views/Error/Error404.cshtml"); }
+
+
+
         }
 
 
