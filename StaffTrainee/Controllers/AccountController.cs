@@ -152,7 +152,7 @@ namespace StaffTrainee.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.Phone };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 UserManager.AddToRole(user.Id, "Staff");
                 if (result.Succeeded)
@@ -167,7 +167,7 @@ namespace StaffTrainee.Controllers
                     _context.UserInfos.Add(userInfo);
                     _context.SaveChanges();
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("GetStaffs", "Admin");
                 }
                 AddErrors(result);
             }
@@ -190,7 +190,7 @@ namespace StaffTrainee.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.Phone };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 UserManager.AddToRole(user.Id, "Trainer");
                 if (result.Succeeded)
@@ -205,7 +205,7 @@ namespace StaffTrainee.Controllers
                     _context.UserInfos.Add(userInfo);
                     _context.SaveChanges();
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("GetTrainers", "Admin");
                 }
                 AddErrors(result);
             }
@@ -231,7 +231,7 @@ namespace StaffTrainee.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.Phone };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 UserManager.AddToRole(user.Id, "Trainee");
                 if (result.Succeeded)
@@ -246,7 +246,7 @@ namespace StaffTrainee.Controllers
                     _context.UserInfos.Add(userInfo);
                     _context.SaveChanges();
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("GetTrainees", "Staff");
                 }
                 AddErrors(result);
             }
@@ -280,7 +280,7 @@ namespace StaffTrainee.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.Phone };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
