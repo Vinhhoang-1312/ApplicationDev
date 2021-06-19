@@ -225,7 +225,7 @@ namespace StaffTrainee.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Staff")]
         [HttpPost]
         public async Task<ActionResult> CreateTrainee(RegisterViewModel model)
         {
