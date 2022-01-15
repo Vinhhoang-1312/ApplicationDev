@@ -5,3 +5,4 @@ This project is a basic MVC dot net web that has 4 roles: Admin(crud staff and T
 
 
 ![Screenshot 2021-12-31 122900](https://user-images.githubusercontent.com/58348789/147805228-f71c4b59-242f-456e-a4c6-3f041805664c.png)
+![image](https://user-images.githubusercontent.com/58348789/149623659-05d4e43d-0a6a-4391-b9e7-b86ff2c2e234.png)
